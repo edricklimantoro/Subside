@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "197618468213",
+    "project_id": "subside-4e8af",
+    "storage_bucket": "subside-4e8af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197618468213:android:3f879f2ca3326f71aabf3c",
+        "android_client_info": {
+          "package_name": "com.example.subside"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197618468213-i23k88angoc6s2dgfr5s9v55c5jl2f9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Pgw6216puMqh5YPHdu2z0rhz0dwUEJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197618468213-i23k88angoc6s2dgfr5s9v55c5jl2f9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
