@@ -16,7 +16,7 @@ public class MyItem {
 
     public static String[] Major ={
             "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2021",
-            "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2020"
+            "Industrial Engineering | FET 2020", "Industrial Engineering | FET 2019", "Computer Science | FET 2020", "Computer Science | FET 2020"
     };
 
     public static String[] Id={
