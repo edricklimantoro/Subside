@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,14 +16,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.subside.auth.SignIn;
+import com.example.subside.auth.SignUp;
+
 public class WelcomeSlider extends AppCompatActivity {
 
+    // Slider attributes
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
-    private Button btnSkip, btnNext;
+
     private PrefManager prefManager;
 
     @Override
@@ -49,8 +54,7 @@ public class WelcomeSlider extends AppCompatActivity {
         // layouts of welcome sliders
         layouts = new int[]{
                 R.layout.welcome_slide1,
-                R.layout.welcome_slide2,
-                R.layout.welcome_slide_signup
+                R.layout.welcome_slide2
         };
 
         // adding bottom dots
@@ -75,8 +79,9 @@ public class WelcomeSlider extends AppCompatActivity {
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("•"));
-            dots[i].setTextSize(35);
+            dots[i].setTextSize(40);
             dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setPadding(2, 0, 2, 0);
             dotsLayout.addView(dots[i]);
         }
 
@@ -88,10 +93,10 @@ public class WelcomeSlider extends AppCompatActivity {
         return viewPager.getCurrentItem() + i;
     }
 
-    private void launchHomeScreen() {
+    public void launchSignUp(View v) {
 //        prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeSlider.this, MainActivity.class));
-        finish();
+        startActivity(new Intent(WelcomeSlider.this, SignUp.class));
+//        finish();
     }
 
     //  viewpager change listener
@@ -100,6 +105,9 @@ public class WelcomeSlider extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
+            if (position == 2) {
+
+            }
         }
 
         @Override
@@ -158,10 +166,6 @@ public class WelcomeSlider extends AppCompatActivity {
             View view = (View) object;
             container.removeView(view);
         }
-    }
 
-    public void welcomeToMain(View view) {
-        Intent intent = new Intent(WelcomeSlider.this, MainActivity.class);
-        startActivity(intent);
     }
 }

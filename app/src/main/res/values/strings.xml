@@ -4,5 +4,16 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_account">Account</string>
+    <string name="slide1_heading">What is Subside?</string>
+    <string name="slide1_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie odio eget nibh tempus, in consequat nulla convallis. Fusce tincidunt ultrices odio vel porta.</string>
+    <string name="slide2_heading">Features</string>
+    <string name="slide2_desc">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie odio eget nibh tempus, in consequat nulla convallis. "</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="slide_signup_heading">Get Started</string>
+    <string name="slide2_button_label">Get Started!</string>
+    <string name="title_signup">Create an Account</string>
+    <string name="title_signin">Sign into Your Account</string>
+    <string name="no_account">Don\'t have an Account?</string>
+    <string name="have_an_account">Have an Account?</string>
 
 </resources>

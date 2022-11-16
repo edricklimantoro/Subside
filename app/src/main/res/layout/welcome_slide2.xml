@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_slide2_bg">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/slide2_heading"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Slide 2"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:text="@string/slide2_heading"
+        android:textSize="45sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/productsans_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/slide2_desc"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/slide2_desc"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/productsans_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/slide2_heading" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/slide2_button_label"
+        android:textAllCaps="false"
+        android:fontFamily="@font/productsans_bold"
+        android:onClick="launchSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slide2_desc"/>
+<!--        android:background="@color/transparent"-->
+<!--        android:foreground="@drawable/edittext_bg"-->
+<!--        android:textColor="@color/black"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
