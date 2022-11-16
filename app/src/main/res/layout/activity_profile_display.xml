@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor eu quam vitae convallis. Proin tempus turpis et sem sodales, sit amet semper mauris gravida. Mauris et quam eu ligula placerat accumsan ut ac leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam auctor tellus et tellus molestie, quis convallis odio ullamcorper. Proin efficitur libero a ipsum bibendum, quis mattis lorem ultrices. Vivamus id turpis nisl. Cras dui eros, sagittis vel bibendum at, bibendum ut lorem. Mauris interdum in nibh at rutrum. Fusce placerat massa eget lorem faucibus feugiat. Nulla ultricies ac lectus ac tempus. In malesuada efficitur felis nec malesuada.  Donec vulputate fermentum tristique. Ut quis dui eget tellus sodales condimentum ac ac diam. Nullam non arcu lectus. Integer faucibus, ipsum blandit laoreet malesuada, nibh ante porta purus, sit amet gravida nulla metus non eros. Vivamus vestibulum nulla sed leo efficitur suscipit. Duis a ex ut nisi maximus semper. Duis pretium molestie ex, tempus lacinia ex pharetra a. Vestibulum eget velit sed elit rutrum tempus. Nam dolor urna, finibus et ipsum rhoncus, fringilla placerat ligula. Nunc mattis libero mattis pulvinar lobortis.  Suspendisse convallis dignissim nisl sed placerat. Morbi egestas, justo non posuere ornare, sapien ante ultricies magna, sit amet tempus nulla magna sit amet mi. Cras elementum consequat egestas. Donec consectetur vitae nisi nec iaculis. Sed sed nisi ultrices, rutrum lorem non, aliquam velit. Vivamus porta mattis cursus. Nulla et lorem mi. Sed et consectetur nisl. Ut nec massa vitae lorem feugiat tempus. Praesent convallis felis sed porttitor finibus.  Quisque et nisl mattis, molestie nisi vulputate, mollis purus. Proin lacinia mollis auctor. Praesent quam tellus, scelerisque vel imperdiet id, blandit vitae quam. Aliquam laoreet diam ultrices ligula aliquam interdum in id leo. Aliquam pharetra sollicitudin orci, quis imperdiet nulla egestas at. Pellentesque a ante ligula. Morbi vehicula felis vel neque facilisis porttitor. Pellentesque laoreet ex est, ut placerat risus accumsan id. Aenean vehicula condimentum porta. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec vitae dictum lacus. Morbi vel ullamcorper neque. Vivamus posuere eget nibh in congue. Curabitur non nisl at ipsum aliquam aliquet.  Curabitur accumsan arcu et est tincidunt, elementum scelerisque mauris scelerisque. Fusce at mi eget neque consectetur varius. In facilisis blandit tellus. Quisque pharetra finibus lacus, vel viverra ex consequat ut. Duis et consectetur massa. Praesent dictum, erat vulputate dapibus mattis, turpis augue rutrum neque, non pulvinar magna ante et leo. Aliquam erat volutpat. Morbi placerat justo dui, in interdum nulla dictum sit amet. Maecenas vestibulum rutrum eleifend. Fusce imperdiet elit vitae quam vulputate, vitae tempor nisi laoreet. Cras rhoncus rutrum interdum. Cras sapien leo, sollicitudin quis congue tempus, ullamcorper a lectus. Ut purus nibh, vestibulum id tempus at, imperdiet a purus. Pellentesque id ipsum molestie purus condimentum gravida eu et mi. Maecenas lobortis nisi justo, vel malesuada nisl tempus sit amet." />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <!--
+                In the above cardview widget
+                cardelevation property will give elevation to your card view
+                card corner radius will provide radius to your card view
+                card background color will give background color to your card view
+                card max elevation will give the cardview maximum elevation
+                card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
+                card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
+                below are the two widgets imageview and text view we are displaying inside our card view.
+                -->
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_home_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/app_name"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

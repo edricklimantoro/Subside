@@ -27,12 +27,16 @@
             android:label="SignUp" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_main" />
         <activity
             android:name=".WelcomeSlider"
             android:exported="false"
             android:label="WelcomeSlider" />
+        <activity
+            android:name=".ProfileDisplay"
+            android:exported="true"
+            android:label="ProfileDisplay" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
