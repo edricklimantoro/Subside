@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:backgroundTint="@color/black"
+            android:background="@color/black"
+            android:scaleType="fitXY"
+            android:id="@+id/imageList"
+            android:src="@drawable/ic_smile_foreground" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="65dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Bintang Anandhiya"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/text_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Computer Science | FET 2020"
+                android:textColor="@color/black"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/text_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020390008"
+                android:textSize="9sp"/>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="13dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_ig"/>
+                <TextView
+                    android:id="@+id/text_ig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="bintangnndhy"
+                    android:textSize="9sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ic_email"
+                    android:layout_width="13dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_email"/>
+                <TextView
+                    android:id="@+id/text_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bintangnndhy@my.sampoernauniversi..."
+                    android:textSize="9sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ic_phone"
+                    android:layout_width="13dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_phone"/>
+
+                <TextView
+                    android:id="@+id/text_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="082372116118"
+                    android:textSize="9sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/ic_linkedin"
+                    android:layout_width="13dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_linkedin"/>
+
+                <TextView
+                    android:id="@+id/text_linkedin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bintang Annandhiya"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="9sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
