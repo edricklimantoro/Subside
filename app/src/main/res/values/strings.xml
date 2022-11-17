@@ -15,5 +15,8 @@
     <string name="title_signin">Sign into Your Account</string>
     <string name="no_account">Don\'t have an Account?</string>
     <string name="have_an_account">Have an Account?</string>
+    <string name="SUBSIDE."><font color="#af01f3">SU</font>BSIDE.</string>
+    <string name="Home_comp_sci_major"> <font color="#808080"><b>Computer Science</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_profile_placeholder"><font color="#808080"><b>Name</b><small>\n Major goes here</small></font></string>
 
 </resources>
