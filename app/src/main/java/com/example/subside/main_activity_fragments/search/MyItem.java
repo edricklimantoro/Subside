@@ -10,13 +10,13 @@ public class MyItem {
     };
 
     public static String[] Name ={
-            "Bintang Anandhiya", "Muhammad Akhsanul Zidan", "Brandon John", "Pieter Timothy",
-            "Muhammad Nafis", "Edrick Hansel", "Altsa Hendra", "Muhammad Daffa"
+            "Septian", "Agus", "Aprilia", "Novi",
+            "Januar", "Febri", "Mari", "Mei"
     };
 
     public static String[] Major ={
-            "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2021",
-            "Industrial Engineering | FET 2020", "Industrial Engineering | FET 2019", "Computer Science | FET 2020", "Computer Science | FET 2020"
+            "Computer Science | FET 2020", "Computer Science | FET 2020", "Computer Science | FET 2019", "Computer Science | FET 2021",
+            "Industrial Engineering | FET 2020", "Industrial Engineering | FET 2019", "Mechanical Engineering | FET 2020", "Mechanical Engineering | FET 2020"
     };
 
     public static String[] Id={
@@ -28,8 +28,8 @@ public class MyItem {
     };
 
     public static String[] Email={
-            "bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id",
-            "bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id","bintang.anandhiya@my.sampoernauniversity.ac.id"
+            "abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id",
+            "abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id"
     };
 
     public static String[] Phone={

@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="170dp"
+            android:layout_width="150dp"
             android:layout_height="170dp"
             android:backgroundTint="@color/black"
             android:background="@color/black"
@@ -53,12 +53,6 @@
                 android:textColor="@color/black"
                 android:textSize="10sp"/>
 
-            <TextView
-                android:id="@+id/text_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2020390008"
-                android:textSize="9sp"/>
 
             <LinearLayout
 
@@ -134,6 +128,12 @@
                     android:textSize="9sp"/>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/text_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020390008"
+                android:textSize="9sp"/>
 
         </LinearLayout>
     </LinearLayout>
