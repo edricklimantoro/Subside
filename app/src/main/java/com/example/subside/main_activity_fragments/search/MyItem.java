@@ -28,8 +28,8 @@ public class MyItem {
     };
 
     public static String[] Email={
-            "bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id",
-            "bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id","bintang@my.sampoernauniversity.ac.id"
+            "abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id",
+            "abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id","abc@my.sampoernauniversity.ac.id"
     };
 
     public static String[] Phone={
