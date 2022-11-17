@@ -28,7 +28,8 @@ public class SearchFragment extends Fragment {
     Button cohort_fbtn;
     TextView noData;
 
-    String[] fMajors={"All","Computer Science", "Industrial Engineering"};
+    String[] fMajors={"All","Accounting","Computer Science","English Education","Math Education", "Industrial Engineering",
+    "Information System", "Management", "Mechanical Engineering", "Visual Communication Design"};
     String[] fCohort={"All","2019","2020","2021","2022"};
     String majorSelected="All";
     String cohortSelected="All";
