@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="413dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/profpic" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -24,15 +34,22 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/signin_heading2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor eu quam vitae convallis. Proin tempus turpis et sem sodales, sit amet semper mauris gravida. Mauris et quam eu ligula placerat accumsan ut ac leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam auctor tellus et tellus molestie, quis convallis odio ullamcorper. Proin efficitur libero a ipsum bibendum, quis mattis lorem ultrices. Vivamus id turpis nisl. Cras dui eros, sagittis vel bibendum at, bibendum ut lorem. Mauris interdum in nibh at rutrum. Fusce placerat massa eget lorem faucibus feugiat. Nulla ultricies ac lectus ac tempus. In malesuada efficitur felis nec malesuada.  Donec vulputate fermentum tristique. Ut quis dui eget tellus sodales condimentum ac ac diam. Nullam non arcu lectus. Integer faucibus, ipsum blandit laoreet malesuada, nibh ante porta purus, sit amet gravida nulla metus non eros. Vivamus vestibulum nulla sed leo efficitur suscipit. Duis a ex ut nisi maximus semper. Duis pretium molestie ex, tempus lacinia ex pharetra a. Vestibulum eget velit sed elit rutrum tempus. Nam dolor urna, finibus et ipsum rhoncus, fringilla placerat ligula. Nunc mattis libero mattis pulvinar lobortis.  Suspendisse convallis dignissim nisl sed placerat. Morbi egestas, justo non posuere ornare, sapien ante ultricies magna, sit amet tempus nulla magna sit amet mi. Cras elementum consequat egestas. Donec consectetur vitae nisi nec iaculis. Sed sed nisi ultrices, rutrum lorem non, aliquam velit. Vivamus porta mattis cursus. Nulla et lorem mi. Sed et consectetur nisl. Ut nec massa vitae lorem feugiat tempus. Praesent convallis felis sed porttitor finibus.  Quisque et nisl mattis, molestie nisi vulputate, mollis purus. Proin lacinia mollis auctor. Praesent quam tellus, scelerisque vel imperdiet id, blandit vitae quam. Aliquam laoreet diam ultrices ligula aliquam interdum in id leo. Aliquam pharetra sollicitudin orci, quis imperdiet nulla egestas at. Pellentesque a ante ligula. Morbi vehicula felis vel neque facilisis porttitor. Pellentesque laoreet ex est, ut placerat risus accumsan id. Aenean vehicula condimentum porta. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec vitae dictum lacus. Morbi vel ullamcorper neque. Vivamus posuere eget nibh in congue. Curabitur non nisl at ipsum aliquam aliquet.  Curabitur accumsan arcu et est tincidunt, elementum scelerisque mauris scelerisque. Fusce at mi eget neque consectetur varius. In facilisis blandit tellus. Quisque pharetra finibus lacus, vel viverra ex consequat ut. Duis et consectetur massa. Praesent dictum, erat vulputate dapibus mattis, turpis augue rutrum neque, non pulvinar magna ante et leo. Aliquam erat volutpat. Morbi placerat justo dui, in interdum nulla dictum sit amet. Maecenas vestibulum rutrum eleifend. Fusce imperdiet elit vitae quam vulputate, vitae tempor nisi laoreet. Cras rhoncus rutrum interdum. Cras sapien leo, sollicitudin quis congue tempus, ullamcorper a lectus. Ut purus nibh, vestibulum id tempus at, imperdiet a purus. Pellentesque id ipsum molestie purus condimentum gravida eu et mi. Maecenas lobortis nisi justo, vel malesuada nisl tempus sit amet." />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="280dp"
+                android:fontFamily="@font/productsans_bold"
+                android:text="Bintang Anandhiya"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="10dp"
@@ -40,37 +57,162 @@
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true">
 
-                <!--
-                In the above cardview widget
-                cardelevation property will give elevation to your card view
-                card corner radius will provide radius to your card view
-                card background color will give background color to your card view
-                card max elevation will give the cardview maximum elevation
-                card prevent corner overlap will add padding to CardView on v20 and before to prevent intersections between the Card content and rounded corners.
-                card use compact padding will add padding in API v21+ as well to have the same measurements with previous versions.
-                below are the two widgets imageview and text view we are displaying inside our card view.
-                -->
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_home_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/app_name"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/text_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Computer Science | FET 2020"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="2020390008"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_ig" />
+
+                        <TextView
+                            android:id="@+id/text_ig"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="bintangnndhy"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ic_email"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_email" />
+
+                        <TextView
+                            android:id="@+id/text_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="bintangnndhy@my.sampoernauniversi..."
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ic_phone"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_phone" />
+
+                        <TextView
+                            android:id="@+id/text_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="082372116118"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ic_linkedin"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_linkedin" />
+
+                        <TextView
+                            android:id="@+id/text_linkedin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="bintang Annandhiya"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
 
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="-30dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="12dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/text_major2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Funfact"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl. /nNec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue." />
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
