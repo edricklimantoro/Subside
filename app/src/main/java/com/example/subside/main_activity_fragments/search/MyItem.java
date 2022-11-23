@@ -20,11 +20,11 @@ public class MyItem {
     };
 
     public static String[] Id={
-            "2020390017","2020390017", "2020390017", "2020390017", "2020390017", "2020390017", "2020390017", "2020390017"
+            "2020390001","2020320007", "2021310017", "2021200022", "2020310019", "2020300014", "2020310001", "2020300016"
     };
 
     public static String[] Ig={
-            "bintangnndhy","bintangnndhy","bintangnndhy","bintangnndhy","bintangnndhy","bintangnndhy","bintangnndhy","bintangnndhy"
+            "septian_","agus_tus","april_lia","nov.id","januars.","febrii_","Mariana_","Meitianti"
     };
 
     public static String[] Email={
@@ -33,11 +33,11 @@ public class MyItem {
     };
 
     public static String[] Phone={
-            "0811892313","0811892313","0811892313","0811892313","0811892313","0811892313","0811892313","0811892313"
+            "0811892313","0811222313","0811843312","0811892211","0823452321","0821234533","08124567381","0813865432"
     };
 
     public static String[] Linkedin={
-            "Bintang Anandhiya", "Muhammad Akhsanul Zidan", "Brandon John", "Pieter Timothy",
-            "Muhammad Nafis", "Edrick Hansel", "Altsa Hendra", "Muhammad Daffa"
+            "Septian", "Agus", "Aprilia", "Novi",
+            "Januar", "Febri", "Mari", "Mei"
     };
 }

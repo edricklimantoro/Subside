@@ -10,10 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.subside.R;
 import com.example.subside.databinding.FragmentSearchBinding;
 
@@ -65,7 +67,7 @@ public class SearchFragment extends Fragment {
             ));
         }
 
-        recyclerViewAdapter=new AdapterRecyclerView(data);
+        recyclerViewAdapter=new AdapterRecyclerView(this.getContext(),data);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         searchView= view.findViewById(R.id.searchView);

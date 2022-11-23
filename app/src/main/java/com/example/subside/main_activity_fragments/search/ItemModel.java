@@ -11,7 +11,7 @@ public class ItemModel {
     int image;
 
 
-    public ItemModel(String name, String major, int image, String ig, String email, String phone, String linkedin, String id) {
+    public ItemModel(String name, String major, int image, String id, String ig, String email, String phone, String linkedin) {
         this.name=name;
         this.major =major;
         this.image=image;

@@ -1,22 +1,23 @@
 package com.example.subside.main_activity_fragments.search;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>{
     private static ArrayList<ItemModel> dataItem;
+    private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -28,6 +29,8 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         TextView textEmail;
         TextView textPhone;
         TextView textLinkedin;
+        CardView profileItem;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -39,10 +42,13 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             textEmail=itemView.findViewById(R.id.text_email);
             textPhone=itemView.findViewById(R.id.text_phone);
             textLinkedin=itemView.findViewById(R.id.text_linkedin);
+            profileItem=itemView.findViewById(R.id.ProfileItem);
+
         }
     }
 
-    public AdapterRecyclerView(ArrayList<ItemModel> dataItem){
+    public AdapterRecyclerView(Context context, ArrayList<ItemModel> dataItem){
+        this.context= context;
         this.dataItem=dataItem;
     }
 
@@ -76,6 +82,21 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         textEmail.setText(dataItem.get(position).getEmail());
         textPhone.setText(dataItem.get(position).getPhone());
         textLinkedin.setText(dataItem.get(position).getLinkedin());
+
+        holder.profileItem.setOnClickListener(v -> {
+            Intent profileIntent = new Intent(context,ProfileDisplay.class);
+            profileIntent.putExtra("profile_image",dataItem.get(position).getImage());
+            profileIntent.putExtra("profile_name",dataItem.get(position).getName());
+            profileIntent.putExtra("profile_major",dataItem.get(position).getMajor());
+            profileIntent.putExtra("profile_Id",dataItem.get(position).getId());
+            profileIntent.putExtra("profile_Ig",dataItem.get(position).getIg());
+            profileIntent.putExtra("profile_email",dataItem.get(position).getEmail());
+            profileIntent.putExtra("profile_phone",dataItem.get(position).getPhone());
+            profileIntent.putExtra("profile_linkedin",dataItem.get(position).getLinkedin());
+            context.startActivity(profileIntent);
+
+        });
+
     }
 
     @Override
