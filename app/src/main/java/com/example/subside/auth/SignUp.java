@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.subside.MainActivity;
+import com.example.subside.CreateProfile;
 import com.example.subside.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +50,7 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         if (mUser != null) {
-            launchMainActivity();
+            launchCreateProfile();
         }
 
         textHaveAccount = findViewById(R.id.have_account);
@@ -83,7 +83,7 @@ public class SignUp extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(SignUp.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
-                        launchMainActivity();
+                        launchCreateProfile();
                     } else {
                         Toast.makeText(SignUp.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                     }
@@ -98,8 +98,8 @@ public class SignUp extends AppCompatActivity {
         return pattern.matcher(email).matches();
     }
 
-    private void launchMainActivity() {
-        Intent intent = new Intent(SignUp.this, MainActivity.class);
+    private void launchCreateProfile() {
+        Intent intent = new Intent(SignUp.this, CreateProfile.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

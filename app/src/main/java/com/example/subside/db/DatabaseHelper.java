@@ -1,5 +1,7 @@
 package com.example.subside.db;
 
+import android.util.Log;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -10,7 +12,7 @@ import java.util.Map;
 
 public class DatabaseHelper {
     private DatabaseReference databaseReference;
-    private static String DB_PATH = "user-profile";
+    private static final String DB_PATH = "user-profile";
 
     public DatabaseHelper() {
         FirebaseDatabase db = FirebaseDatabase.getInstance();

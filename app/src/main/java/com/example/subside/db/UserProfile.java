@@ -1,9 +1,6 @@
 package com.example.subside.db;
 
-import android.net.Uri;
-
 public class UserProfile {
-    private String uid;
     private String profPictUri;
     private String name;
     private String major;
@@ -22,8 +19,7 @@ public class UserProfile {
     public UserProfile() {
     }
 
-    public UserProfile(String uid, String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, boolean hideSID, boolean disableFeatured, boolean hideAccount) {
-        this.uid = uid;
+    public UserProfile(String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, boolean hideSID, boolean disableFeatured, boolean hideAccount) {
         this.profPictUri = profPictUri;
         this.name = name;
         this.major = major;
@@ -38,14 +34,6 @@ public class UserProfile {
         this.hideSID = hideSID;
         this.disableFeatured = disableFeatured;
         this.hideAccount = hideAccount;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public String getProfPictUri() {
