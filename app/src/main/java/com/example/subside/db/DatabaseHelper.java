@@ -1,8 +1,7 @@
 package com.example.subside.db;
 
-import android.util.Log;
-
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -35,6 +34,10 @@ public class DatabaseHelper {
 
     public Query get() {
         return databaseReference.orderByKey();
+    }
+
+    public DatabaseReference getOne(String uid) {
+        return databaseReference.child(uid);
     }
 
 }

@@ -13,19 +13,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.subside.R;
+import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AccountFragment extends Fragment {
 
     private UserProfile currentUserProfile;
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseHelper db;
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact;
     private Switch showSID, allowFeatured, showAccount;
     private Button btnEditProfile, btnLogout;
@@ -50,17 +53,17 @@ public class AccountFragment extends Fragment {
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference("user-profile");
-        mDatabase.child(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        db = new DatabaseHelper();
+        db.getOne(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    currentUserProfile = (UserProfile)task.getResult().getValue();
-                    setProfileValues();
-                }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                currentUserProfile = snapshot.getValue(UserProfile.class);
+                setProfileValues();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("getOne()", "loadPost:onCancelled", error.toException());
             }
         });
 
