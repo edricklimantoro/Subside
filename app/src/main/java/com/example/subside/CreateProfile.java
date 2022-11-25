@@ -105,6 +105,7 @@ public class CreateProfile extends AppCompatActivity {
 
     private void performSubmitProfile() {
         HashMap<String, Object> userUpdates = new HashMap<>();
+        // TODO: Update profile image
         userUpdates.put("name", inputFullName.getText().toString());
         userUpdates.put("major", majorSpinner.getSelectedItem().toString());
         userUpdates.put("faculty", facultySpinner.getSelectedItem().toString());

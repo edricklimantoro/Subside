@@ -71,6 +71,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:fontFamily="@font/productsans_bold"
                         android:text="Computer Science | FET 2020"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -81,6 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/productsans_regular"
                         android:text="2020390008"
                         android:textSize="16sp" />
 
@@ -93,14 +95,16 @@
 
                         <ImageView
                             android:id="@+id/imageView2"
-                            android:layout_width="24dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_ig" />
 
                         <TextView
                             android:id="@+id/profile_ig"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/productsans_light"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:text="bintangnndhy"
@@ -115,14 +119,16 @@
 
                         <ImageView
                             android:id="@+id/ic_email"
-                            android:layout_width="24dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_email" />
 
                         <TextView
                             android:id="@+id/profile_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/productsans_light"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:text="bintangnndhy@my.sampoernauniversi..."
@@ -137,14 +143,16 @@
 
                         <ImageView
                             android:id="@+id/ic_phone"
-                            android:layout_width="24dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_phone" />
 
                         <TextView
                             android:id="@+id/profile_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/productsans_light"
                             android:text="082372116118"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -157,14 +165,16 @@
 
                         <ImageView
                             android:id="@+id/ic_linkedin"
-                            android:layout_width="24dp"
+                            android:layout_width="20dp"
                             android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_linkedin" />
 
                         <TextView
                             android:id="@+id/profile_linkedin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/productsans_light"
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:text="bintang Annandhiya"
@@ -200,15 +210,16 @@
                         android:layout_marginBottom="10dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="Funfact"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="Fun Fact"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"/>
 
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/productsans_light"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl. /nNec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue." />
 
                 </LinearLayout>
