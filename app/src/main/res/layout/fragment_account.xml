@@ -55,7 +55,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/anon1"/>
+                    app:srcCompat="@drawable/anon2" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
