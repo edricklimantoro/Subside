@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
+import com.example.subside.db.UserProfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,9 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    List<ItemModel> list;
+    List<UserProfile> list;
 
-    public MyAdapter(List<ItemModel> list, Context context){
+    public MyAdapter(List<UserProfile> list, Context context){
         this.context=context;
         this.list=list;
     }
@@ -37,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ItemModel user = list.get(position);
+        UserProfile user = list.get(position);
 
         holder.textName.setText(user.getName());
         holder.textMajor.setText(user.getMajor());

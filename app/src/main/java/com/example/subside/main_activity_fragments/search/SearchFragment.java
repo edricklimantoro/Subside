@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subside.R;
 import com.example.subside.databinding.FragmentSearchBinding;
+import com.example.subside.db.DatabaseHelper;
+import com.example.subside.db.UserProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +34,7 @@ public class SearchFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     MyAdapter adapter;
-    private final List<ItemModel> list=new ArrayList<>();
+    private final List<UserProfile> list=new ArrayList<>();
 
     private FragmentSearchBinding binding;
 
@@ -50,25 +52,13 @@ public class SearchFragment extends Fragment {
 
         recyclerView.setAdapter(new MyAdapter(list,this.getContext()));
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        DatabaseHelper databaseHelper = new DatabaseHelper();
+        databaseHelper.get().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot users: snapshot.child("user-profile").getChildren()){
-                    String getProfPictUri = users.child("profPictUri").getValue(String.class);
-                    String getName = users.child("name").getValue(String.class);
-                    String getMajor = users.child("major").getValue(String.class);
-                    String getFaculty = users.child("faculty").getValue(String.class);
-                    String getCohort = users.child("cohort").getValue(String.class);
-                    String getSid = users.child("sid").getValue(String.class);
-                    String getInstagram = users.child("instagram").getValue(String.class);
-                    String getEmail = users.child("email").getValue(String.class);
-                    String getPhoneNum = users.child("phoneNum").getValue(String.class);
-                    String getLinkedin = users.child("linkedIn").getValue(String.class);
-                    String getFunfact = users.child("funFact").getValue(String.class);
-                    ItemModel datas = new ItemModel(getProfPictUri,getName,getMajor,getFaculty,getCohort,getSid,getInstagram,getEmail,getPhoneNum,getLinkedin,getFunfact);
-                    list.add(datas);
-
-                }
+                for(DataSnapshot users: snapshot.getChildren()){
+                    UserProfile datas = users.getValue(UserProfile.class);
+                    list.add(datas);}
             }
 
             @Override
@@ -76,6 +66,7 @@ public class SearchFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
