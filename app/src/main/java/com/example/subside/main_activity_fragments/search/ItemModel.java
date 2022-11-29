@@ -1,25 +1,46 @@
 package com.example.subside.main_activity_fragments.search;
 
 public class ItemModel {
-    String name;
-    String major;
-    String id;
-    String ig;
-    String email;
-    String phone;
-    String linkedin;
-    int image;
+    private String profPictUri;
+    private String name;
+    private String major;
+    private String faculty;
+    private String cohort;
+    private String sid;
+    private String instagram;   // link to https://instagram.com/[instagram]
+    private String email;
+    private String phoneNum;
+    private String linkedIn;    // link to https://linkedin.com/in/[kebab-case-linkedIn]
+    private String funFact;
+/*    private boolean hideSID = false;
+    private boolean disableFeatured = false;
+    private boolean hideAccount = false;
+*/
 
 
-    public ItemModel(String name, String major, int image, String id, String ig, String email, String phone, String linkedin) {
-        this.name=name;
-        this.major =major;
-        this.image=image;
-        this.id=id;
-        this.ig=ig;
-        this.email=email;
-        this.phone=phone;
-        this.linkedin=linkedin;
+    public ItemModel(String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact) {
+        this.profPictUri = profPictUri;
+        this.name = name;
+        this.major = major;
+        this.faculty = faculty;
+        this.cohort = cohort;
+        this.sid = sid;
+        this.instagram = instagram;
+        this.email = email;
+        this.phoneNum = phoneNum;
+        this.linkedIn = linkedIn;
+        this.funFact = funFact;
+        //this.hideSID = hideSID;
+        //this.disableFeatured = disableFeatured;
+        //this.hideAccount = hideAccount;
+    }
+
+    public String getProfPictUri() {
+        return profPictUri;
+    }
+
+    public void setProfPictUri(String profPictUri) {
+        this.profPictUri = profPictUri;
     }
 
     public String getName() {
@@ -38,20 +59,36 @@ public class ItemModel {
         this.major = major;
     }
 
-    public int getImage() {
-        return image;
+    public String getFaculty() {
+        return faculty;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 
-    public String getId() {
-        return id;
+    public String getCohort() {
+        return cohort;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCohort(String cohort) {
+        this.cohort = cohort;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
     }
 
     public String getEmail() {
@@ -62,27 +99,51 @@ public class ItemModel {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public String getIg() {
-        return ig;
+    public String getLinkedIn() {
+        return linkedIn;
     }
 
-    public void setIg(String ig) {
-        this.ig = ig;
+    public void setLinkedIn(String linkedIn) {
+        this.linkedIn = linkedIn;
     }
 
-    public String getLinkedin() {
-        return linkedin;
+    public String getFunFact() {
+        return funFact;
     }
 
-    public void setLinkedin(String linkedin) {
-        this.linkedin = linkedin;
+    public void setFunFact(String funFact) {
+        this.funFact = funFact;
     }
+
+    /*public boolean isHideSID() {
+        return hideSID;
+    }
+
+    public void setHideSID(boolean hideSID) {
+        this.hideSID = hideSID;
+    }
+
+    public boolean isDisableFeatured() {
+        return disableFeatured;
+    }
+
+    public void setDisableFeatured(boolean disableFeatured) {
+        this.disableFeatured = disableFeatured;
+    }
+
+    public boolean isHideAccount() {
+        return hideAccount;
+    }
+
+    public void setHideAccount(boolean hideAccount) {
+        this.hideAccount = hideAccount;
+    }*/
 }
