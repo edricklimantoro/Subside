@@ -64,7 +64,9 @@ public class SearchFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot users: snapshot.getChildren()){
                     UserProfile datas = users.getValue(UserProfile.class);
-                    list.add(datas);}
+                    list.add(datas);
+                }
+                setAdapter();
             }
 
             @Override
@@ -73,61 +75,12 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        myAdapter = new MyAdapter(list,this.getContext());
-        recyclerView.setAdapter(myAdapter);
-
         searchView= view.findViewById(R.id.searchView);
         noData = view.findViewById(R.id.nodata_txt);
         major_fbtn = view.findViewById(R.id.major_filterbtn);
         cohort_fbtn = view.findViewById(R.id.cohort_filterbtn);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                newText = newText.toLowerCase();
-                ArrayList<UserProfile> itemFilter = new ArrayList<>();
-                for (UserProfile model: list){
-                    String sname= model.getName().toLowerCase();
-                    if(sname.contains(newText)){
-                        if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                            if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
-                                itemFilter.add(model);
-                            }
-                        }
-
-                        else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
-                            if (model.getMajor().contains(majorSelected)) {
-                                itemFilter.add(model);
-                            }
-                        }
-
-                        else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                            if (model.getCohort().contains(cohortSelected)) {
-                                itemFilter.add(model);
-                            }
-                        }
-
-                        else if(majorSelected.equals("All") && cohortSelected.equals("All")){
-                                itemFilter.add(model);
-                        }
-                    }
-
-                }
-                myAdapter.setFilter(itemFilter);
-                if(itemFilter.isEmpty()){
-                    noData.setVisibility(View.VISIBLE);
-                }
-                else{
-                    noData.setVisibility(View.GONE);
-                }
-                return false;
-            }
-        });
+        searchUser();
 
         major_fbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +99,12 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+    public void setAdapter(){
+        myAdapter = new MyAdapter(list,this.getContext());
+        recyclerView.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+    }
+
     private void majorDialog(){
         AlertDialog.Builder builder= new AlertDialog.Builder(this.getContext());
         builder.setTitle("Filter by Major");
@@ -159,7 +118,8 @@ public class SearchFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                userFilter();
+                filterUser();
+                searchUser();
             }
         });
 
@@ -181,7 +141,8 @@ public class SearchFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                userFilter();
+                filterUser();
+                searchUser();
             }
         });
 
@@ -190,7 +151,59 @@ public class SearchFragment extends Fragment {
 
     }
 
-    private void userFilter(){
+    private void searchUser(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                newText = newText.toLowerCase();
+                if(!newText.isEmpty()){
+                    ArrayList<UserProfile> itemFilter = new ArrayList<>();
+                    for (UserProfile model: list){
+                        String sname= model.getName().toLowerCase();
+                        if(sname.contains(newText)){
+                            if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                                if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+                                    itemFilter.add(model);
+                                }
+                            }
+
+                            else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                                if (model.getMajor().contains(majorSelected)) {
+                                    itemFilter.add(model);
+                                }
+                            }
+
+                            else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                                if (model.getCohort().contains(cohortSelected)) {
+                                    itemFilter.add(model);
+                                }
+                            }
+
+                            else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                                itemFilter.add(model);
+                            }
+                        }
+
+                    }
+                    myAdapter.setFilter(itemFilter);
+
+                    if(itemFilter.isEmpty()){
+                        noData.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        noData.setVisibility(View.GONE);
+                    }}
+                return false;
+            }
+        });
+    }
+
+    private void filterUser(){
         ArrayList<UserProfile> itemFilter = new ArrayList<>();
         for (UserProfile model : list){
             if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
@@ -223,8 +236,6 @@ public class SearchFragment extends Fragment {
             }
         }
     }
-
-
 
     @Override
     public void onDestroyView() {
