@@ -209,7 +209,7 @@ public class SearchFragment extends Fragment {
             }
 
             else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                if (model.getMajor().contains(cohortSelected)) {
+                if (model.getCohort().contains(cohortSelected)) {
                     itemFilter.add(model);
                 }
             }

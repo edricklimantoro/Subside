@@ -39,10 +39,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         UserProfile user = list.get(position);
+        String setMajorFacultyCohort = user.getMajor() +" | " +user.getFaculty() +" "+user.getCohort();
 
         holder.textName.setText(user.getName());
-        holder.textMajor.setText(user.getMajor());
-//        holder.imageIcon.setImageResource(user.getProfPictUri());
+        holder.textMajor.setText(setMajorFacultyCohort);
         holder.textID.setText(user.getSid());
         holder.textIG.setText(user.getInstagram());
         holder.textEmail.setText(user.getEmail());
@@ -53,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Intent profileIntent = new Intent(context, ProfileDisplay.class);
             profileIntent.putExtra("profile_image",user.getProfPictUri());
             profileIntent.putExtra("profile_name",user.getName());
-            profileIntent.putExtra("profile_major",user.getMajor());
+            profileIntent.putExtra("profile_major",setMajorFacultyCohort);
             profileIntent.putExtra("profile_Id",user.getSid());
             profileIntent.putExtra("profile_Ig",user.getInstagram());
             profileIntent.putExtra("profile_email",user.getEmail());
