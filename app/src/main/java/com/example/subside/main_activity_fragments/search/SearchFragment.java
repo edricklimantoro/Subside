@@ -37,6 +37,7 @@ public class SearchFragment extends Fragment {
     Button major_fbtn;
     Button cohort_fbtn;
     TextView noData;
+    String searchText="";
 
     String[] fMajors={"All","Accounting","Computer Science","English Education","Math Education", "Industrial Engineering",
             "Information System", "Management", "Mechanical Engineering", "Visual Communication Design"};
@@ -119,7 +120,6 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 filterUser();
-                searchUser();
             }
         });
 
@@ -142,7 +142,6 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 filterUser();
-                searchUser();
             }
         });
 
@@ -160,44 +159,9 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                newText = newText.toLowerCase();
-                if(!newText.isEmpty()){
-                    ArrayList<UserProfile> itemFilter = new ArrayList<>();
-                    for (UserProfile model: list){
-                        String sname= model.getName().toLowerCase();
-                        if(sname.contains(newText)){
-                            if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                                if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
-                                    itemFilter.add(model);
-                                }
-                            }
-
-                            else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
-                                if (model.getMajor().contains(majorSelected)) {
-                                    itemFilter.add(model);
-                                }
-                            }
-
-                            else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                                if (model.getCohort().contains(cohortSelected)) {
-                                    itemFilter.add(model);
-                                }
-                            }
-
-                            else if(majorSelected.equals("All") && cohortSelected.equals("All")){
-                                itemFilter.add(model);
-                            }
-                        }
-
-                    }
-                    myAdapter.setFilter(itemFilter);
-
-                    if(itemFilter.isEmpty()){
-                        noData.setVisibility(View.VISIBLE);
-                    }
-                    else{
-                        noData.setVisibility(View.GONE);
-                    }}
+                searchText = newText.toLowerCase();
+                if(!searchText.isEmpty()){
+                filterUser();}
                 return false;
             }
         });
@@ -206,35 +170,66 @@ public class SearchFragment extends Fragment {
     private void filterUser(){
         ArrayList<UserProfile> itemFilter = new ArrayList<>();
         for (UserProfile model : list){
-            if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+            if(searchText.isEmpty()) {
+                if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                    if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+                        itemFilter.add(model);
+                    }
+                } else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                    if (model.getMajor().contains(majorSelected)) {
+                        itemFilter.add(model);
+                    }
+                } else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                    if (model.getCohort().contains(cohortSelected)) {
+                        itemFilter.add(model);
+                    }
+                } else if (majorSelected.equals("All") && cohortSelected.equals("All")) {
                     itemFilter.add(model);
                 }
+
             }
 
-            else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
-                if (model.getMajor().contains(majorSelected)) {
-                    itemFilter.add(model);
+            else if(!searchText.isEmpty()){
+                String sname= model.getName().toLowerCase();
+                if(sname.contains(searchText)){
+                    if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getCohort().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                        itemFilter.add(model);
+                    }
                 }
-            }
-
-            else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                if (model.getCohort().contains(cohortSelected)) {
-                    itemFilter.add(model);
-                }
-            }
-
-            else if(majorSelected.equals("All") && cohortSelected.equals("All")){
-                itemFilter.add(model);
-            }
-            myAdapter.setFilter(itemFilter);
-            if(itemFilter.isEmpty()){
-                noData.setVisibility(View.VISIBLE);
-            }
-            else{
-                noData.setVisibility(View.GONE);
             }
         }
+        myAdapter.setFilter(itemFilter);
+        if (itemFilter.isEmpty()) {
+            noData.setVisibility(View.VISIBLE);
+        } else {
+            noData.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+        searchText="";
     }
 
     @Override
