@@ -207,7 +207,7 @@
                         android:id="@+id/text_major2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="8dp"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:fontFamily="@font/productsans_regular"
@@ -216,9 +216,56 @@
                         android:textSize="16sp"/>
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/desc_funfact_guess"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/productsans_light"
+                        android:text="Take a guess on what their fun fact is!"
+                        android:textSize="13sp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_guess_funfact"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter Fun Fact"
+                        android:textColorHint="@color/black"
+                        app:boxStrokeColor="@color/purple_200"
+                        app:hintTextColor="@color/black">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/input_guess_funfact"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ems="10"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="14sp"
+                            app:boxStrokeColor="@color/purple_200" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/submitGuessFunFact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/productsans_regular"
+                        android:text="Guess" />
+
+                    <TextView
+                        android:id="@+id/text_funfact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
                         android:fontFamily="@font/productsans_light"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl. /nNec pellentesque velit orci sed augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque, odio eget pharetra feugiat, massa ex volutpat nisl, nec pellentesque velit orci sed augue." />
 

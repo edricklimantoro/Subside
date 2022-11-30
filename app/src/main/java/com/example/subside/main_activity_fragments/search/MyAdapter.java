@@ -14,7 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
+import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +28,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     List<UserProfile> list;
+    private String userUnlockedProfiles = "";
 
     public MyAdapter(List<UserProfile> list, Context context){
         this.context=context;
@@ -32,6 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        setUserUnlockedProfiles();
         View v = LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
         return new MyViewHolder(v);
     }
@@ -51,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.profileItem.setOnClickListener(v -> {
             Intent profileIntent = new Intent(context, ProfileDisplay.class);
+            profileIntent.putExtra("profile_uid",user.getUid());
             profileIntent.putExtra("profile_image",user.getProfPictUri());
             profileIntent.putExtra("profile_name",user.getName());
             profileIntent.putExtra("profile_major",setMajorFacultyCohort);
@@ -59,6 +67,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             profileIntent.putExtra("profile_email",user.getEmail());
             profileIntent.putExtra("profile_phone",user.getPhoneNum());
             profileIntent.putExtra("profile_linkedin",user.getLinkedIn());
+            profileIntent.putExtra("profile_funFact",user.getFunFact());
+            profileIntent.putExtra("user_unlocked_profiles",userUnlockedProfiles);
             context.startActivity(profileIntent);
 
         });
@@ -102,5 +112,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         list.addAll(filterModel);
         notifyDataSetChanged();
     };
+
+    private void setUserUnlockedProfiles() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        DatabaseHelper.getOne(mAuth.getCurrentUser().getUid()).child("unlockedProfiles").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userUnlockedProfiles = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
 }

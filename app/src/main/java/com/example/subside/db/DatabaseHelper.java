@@ -22,7 +22,7 @@ public class DatabaseHelper {
         return mRef.child(PROFILE_PATH).child(uid).updateChildren(newValues);
     }
 
-    public static Task<Void> removeOneUserProfile(String uid) {
+    public static Task<Void> removeOne(String uid) {
         return mRef.child(PROFILE_PATH).child(uid).removeValue();
     }
 

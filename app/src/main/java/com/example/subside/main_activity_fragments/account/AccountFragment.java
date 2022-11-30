@@ -24,7 +24,7 @@ public class AccountFragment extends Fragment {
 
     private UserProfile currentUserProfile;
     private FirebaseAuth mAuth;
-    private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact;
+    private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
     private Switch showSID, allowFeatured, showAccount;
     private Button btnEditProfile, btnLogout;
 
@@ -43,6 +43,7 @@ public class AccountFragment extends Fragment {
         phoneNum = view.findViewById(R.id.acc_phone);
         linkedIn = view.findViewById(R.id.acc_linkedIn);
         funFact = view.findViewById(R.id.acc_funFact);
+        unlockedCount = view.findViewById(R.id.acc_unlock_count);
         showSID = view.findViewById(R.id.acc_switch_showSID);
         allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
@@ -75,6 +76,7 @@ public class AccountFragment extends Fragment {
         phoneNum.setText(currentUserProfile.getPhoneNum().isEmpty() ? "--" : currentUserProfile.getPhoneNum());
         linkedIn.setText(currentUserProfile.getLinkedIn().isEmpty() ? "--" : currentUserProfile.getLinkedIn());
         funFact.setText(currentUserProfile.getFunFact().isEmpty() ? "--" : currentUserProfile.getFunFact());
+        unlockedCount.setText(Integer.toString(currentUserProfile.getUnlockedProfilesCount()));
         showSID.setChecked(!currentUserProfile.isHideSID());
         allowFeatured.setChecked(!currentUserProfile.isDisableFeatured());
         showAccount.setChecked(!currentUserProfile.isHideAccount());

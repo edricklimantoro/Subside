@@ -13,14 +13,33 @@ public class UserProfile {
     private String phoneNum;
     private String linkedIn;    // link to https://linkedin.com/in/[kebab-case-linkedIn]
     private String funFact;
-    private boolean hideSID = false;
-    private boolean disableFeatured = false;
-    private boolean hideAccount = false;
+    private String unlockedProfiles;
+    private int unlockedProfilesCount;
+    private boolean hideSID;
+    private boolean disableFeatured;
+    private boolean hideAccount;
 
     public UserProfile() {
+        uid = "";
+        profPictUri = "";
+        name = "";
+        major = "";
+        faculty = "";
+        cohort = "";
+        sid = "";
+        instagram = "";
+        email = "";
+        phoneNum = "";
+        linkedIn = "";
+        funFact = "";
+        unlockedProfiles = "";
+        unlockedProfilesCount = 0;
+        hideSID = false;
+        disableFeatured = false;
+        hideAccount = false;
     }
 
-    public UserProfile(String uid, String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, boolean hideSID, boolean disableFeatured, boolean hideAccount) {
+    public UserProfile(String uid, String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, String unlockedProfiles, int unlockedProfilesCount, boolean hideSID, boolean disableFeatured, boolean hideAccount) {
         this.uid = uid;
         this.profPictUri = profPictUri;
         this.name = name;
@@ -33,6 +52,8 @@ public class UserProfile {
         this.phoneNum = phoneNum;
         this.linkedIn = linkedIn;
         this.funFact = funFact;
+        this.unlockedProfiles = unlockedProfiles;
+        this.unlockedProfilesCount = unlockedProfilesCount;
         this.hideSID = hideSID;
         this.disableFeatured = disableFeatured;
         this.hideAccount = hideAccount;
@@ -132,6 +153,22 @@ public class UserProfile {
 
     public void setFunFact(String funFact) {
         this.funFact = funFact;
+    }
+
+    public String getUnlockedProfiles() {
+        return unlockedProfiles;
+    }
+
+    public void setUnlockedProfiles(String unlockedProfiles) {
+        this.unlockedProfiles = unlockedProfiles;
+    }
+
+    public int getUnlockedProfilesCount() {
+        return unlockedProfilesCount;
+    }
+
+    public void setUnlockedProfilesCount(int unlockedProfilesCount) {
+        this.unlockedProfilesCount = unlockedProfilesCount;
     }
 
     public boolean isHideSID() {

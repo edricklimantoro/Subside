@@ -7,7 +7,7 @@
     <string name="slide1_heading">What is Subside?</string>
     <string name="slide1_desc">SUBSIDE (SU Basic Student Information Database Exhibitor) is here as a connector between Sampoerna University students in transition from online to offline learning. SUBSIDE is also developed for interactive social games where you can poke your friends (or want-to-be friends) for basic personal information such as full name, email, and Instagram account.</string>
     <string name="slide2_heading">Features</string>
-    <string name="slide2_desc">\u2022Interactive social game\n\u2022Filter cohort, major, and faculty\n\u2022Get to know SU students!</string>
+    <string name="slide2_desc">\u2022 Interactive social game\n\u2022 Filter cohort, major, and faculty\n\u2022 Get to know SU students!</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="slide_signup_heading">Get Started</string>
     <string name="slide2_button_label">Get Started!</string>
