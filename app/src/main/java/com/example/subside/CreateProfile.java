@@ -30,7 +30,6 @@ public class CreateProfile extends AppCompatActivity {
 
     private UserProfile userProfile;
     private FirebaseAuth mAuth;
-    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,6 @@ public class CreateProfile extends AppCompatActivity {
         inputFunfact = findViewById(R.id.input_funfact);
 
         mAuth = FirebaseAuth.getInstance();
-        db = new DatabaseHelper();
         populateSpinner();
         initializeProfile();
 
@@ -94,11 +92,9 @@ public class CreateProfile extends AppCompatActivity {
         userProfile = new UserProfile();
         userProfile.setProfPictUri(Constants.DEFAULT_PROFILE_PICT_URI);
 
-        db.add(mAuth.getCurrentUser().getUid(), userProfile).addOnCompleteListener(task -> {
+        DatabaseHelper.add(mAuth.getCurrentUser().getUid(), userProfile).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(CreateProfile.this, "SUCCESS", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(CreateProfile.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -117,7 +113,7 @@ public class CreateProfile extends AppCompatActivity {
         userUpdates.put("linkedIn", inputLinkedIn.getText().toString());
         userUpdates.put("funFact", inputFunfact.getText().toString());
 
-        db.update(mAuth.getCurrentUser().getUid(), userUpdates).addOnCompleteListener(task -> {
+        DatabaseHelper.update(mAuth.getCurrentUser().getUid(), userUpdates).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(CreateProfile.this, "Profile Setup Successful", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(CreateProfile.this, MainActivity.class));

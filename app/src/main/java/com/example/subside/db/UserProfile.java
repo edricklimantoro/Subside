@@ -1,7 +1,5 @@
 package com.example.subside.db;
 
-import java.util.List;
-
 public class UserProfile {
     private String uid;
     private String profPictUri;
@@ -18,12 +16,11 @@ public class UserProfile {
     private boolean hideSID = false;
     private boolean disableFeatured = false;
     private boolean hideAccount = false;
-    private List<String> unlockedProfiles;
 
     public UserProfile() {
     }
 
-    public UserProfile(String uid, String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, boolean hideSID, boolean disableFeatured, boolean hideAccount, List<String> unlockedProfiles) {
+    public UserProfile(String uid, String profPictUri, String name, String major, String faculty, String cohort, String sid, String instagram, String email, String phoneNum, String linkedIn, String funFact, boolean hideSID, boolean disableFeatured, boolean hideAccount) {
         this.uid = uid;
         this.profPictUri = profPictUri;
         this.name = name;
@@ -39,7 +36,6 @@ public class UserProfile {
         this.hideSID = hideSID;
         this.disableFeatured = disableFeatured;
         this.hideAccount = hideAccount;
-        this.unlockedProfiles = unlockedProfiles;
     }
 
     public String getUid() {
@@ -160,13 +156,5 @@ public class UserProfile {
 
     public void setHideAccount(boolean hideAccount) {
         this.hideAccount = hideAccount;
-    }
-
-    public List<String> getUnlockedProfiles() {
-        return unlockedProfiles;
-    }
-
-    public void setUnlockedProfiles(List<String> unlockedProfiles) {
-        this.unlockedProfiles = unlockedProfiles;
     }
 }

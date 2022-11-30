@@ -22,8 +22,6 @@ import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -61,8 +59,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
-        DatabaseHelper databaseHelper = new DatabaseHelper();
-        databaseHelper.get().addValueEventListener(new ValueEventListener() {
+        DatabaseHelper.getAllUserProfiles().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot users: snapshot.getChildren()){
