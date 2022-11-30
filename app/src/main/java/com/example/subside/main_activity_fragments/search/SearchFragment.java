@@ -3,6 +3,7 @@ package com.example.subside.main_activity_fragments.search;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.subside.R;
-import com.example.subside.databinding.FragmentSearchBinding;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -32,6 +33,7 @@ public class SearchFragment extends Fragment {
     private final List<UserProfile> list=new ArrayList<>();
     RecyclerView recyclerView;
     MyAdapter myAdapter;
+    ShimmerFrameLayout shimmerFrameLayout;
 
     private SearchView searchView;
     Button major_fbtn;
@@ -47,18 +49,29 @@ public class SearchFragment extends Fragment {
     int fMajorspos = 0;
     int fCohortpos = 0;
 
-    private FragmentSearchBinding binding;
-
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
 
+        recyclerView.setVisibility(View.GONE);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.startShimmer();
+
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
+
+        Handler handler = new Handler();
+        //if()
+        handler.postDelayed(()->{
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        },2000);
 
         DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override

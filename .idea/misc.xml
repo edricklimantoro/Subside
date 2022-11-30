@@ -42,8 +42,10 @@
         <entry key="..\:/Android/AndroidStudioProjects/Subside/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2265" />
         <entry key="..\:/Android/AndroidStudioProjects/Subside/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2265" />
         <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/fragment_account.xml" value="0.1" />
-        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/fragment_search.xml" value="0.33" />
-        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/list_item.xml" value="0.10185185185185185" />
+        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/fragment_search_shimmer.xml" value="0.2" />
+        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/list_item.xml" value="0.1" />
+        <entry key="..\:/Users/SU - NB2006059/AndroidStudioProjects/Subside/app/src/main/res/layout/welcome_slide1.xml" value="0.2" />
         <entry key="..\:/Users/SU - NB2006091/AndroidStudioProjects/SubsideAlt/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/SU - NB2006091/AndroidStudioProjects/SubsideAlt/app/src/main/res/layout/activity_profile_display.xml" value="0.25" />
         <entry key="..\:/Users/SU - NB2006091/AndroidStudioProjects/SubsideAlt/app/src/main/res/layout/activity_sign_in.xml" value="0.1634963768115942" />

@@ -72,6 +72,22 @@
         android:text="No data Found "
         android:visibility="gone"/>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/shimmer_view">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <include layout="@layout/fragment_search_shimmer"/>
+            <include layout="@layout/fragment_search_shimmer"/>
+            <include layout="@layout/fragment_search_shimmer"/>
+            <include layout="@layout/fragment_search_shimmer"/>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
@@ -83,6 +99,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:listitem="@layout/list_item" />
+        tools:listitem="@layout/list_item"
+        />
 
 </LinearLayout>
