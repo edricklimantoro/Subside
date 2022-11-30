@@ -90,6 +90,7 @@ public class CreateProfile extends AppCompatActivity {
 
     private void initializeProfile() {
         userProfile = new UserProfile();
+        userProfile.setUid(mAuth.getCurrentUser().getUid());
         userProfile.setProfPictUri(Constants.DEFAULT_PROFILE_PICT_URI);
 
         DatabaseHelper.add(mAuth.getCurrentUser().getUid(), userProfile).addOnCompleteListener(task -> {

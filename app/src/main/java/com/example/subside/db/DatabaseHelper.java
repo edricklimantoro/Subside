@@ -8,32 +8,30 @@ import com.google.firebase.database.Query;
 import java.util.HashMap;
 
 public class DatabaseHelper {
-    private static DatabaseReference mRef;
+    private static DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
     private static final String PROFILE_PATH = "user-profile";
-    private static final String FUN_FACT_PATH = "unlocked-profile";
 
     public DatabaseHelper() {
-        mRef = FirebaseDatabase.getInstance().getReference();
     }
 
     public static Task<Void> add(String uid, UserProfile userProfile) {
-        return mRef.child(PROFILE_PATH).push().setValue(userProfile);
+        return mRef.child(PROFILE_PATH).child(uid).setValue(userProfile);
     }
 
     public static Task<Void> update(String uid, HashMap<String, Object> newValues) {
-        return mRef.child(PROFILE_PATH).orderByChild("uid").equalTo(uid).getRef().updateChildren(newValues);
+        return mRef.child(PROFILE_PATH).child(uid).updateChildren(newValues);
     }
 
     public static Task<Void> removeOneUserProfile(String uid) {
-        return mRef.child(PROFILE_PATH).orderByChild("uid").equalTo(uid).getRef().removeValue();
+        return mRef.child(PROFILE_PATH).child(uid).removeValue();
     }
 
-    public static Query getAllUserProfiles() {
+    public static Query getAll() {
         return mRef.child(PROFILE_PATH).orderByKey();
     }
 
-    public final Query getOneUserProfile(String uid) {
-        return mRef.child(PROFILE_PATH).orderByChild("uid").equalTo(uid);
+    public static DatabaseReference getOne(String uid) {
+        return mRef.child(PROFILE_PATH).child(uid);
     }
 
 }

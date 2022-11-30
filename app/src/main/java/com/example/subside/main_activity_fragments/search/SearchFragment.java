@@ -59,8 +59,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
-        DatabaseHelper databaseHelper = new DatabaseHelper();
-        databaseHelper.getAllUserProfiles().addValueEventListener(new ValueEventListener() {
+        DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot users: snapshot.getChildren()){

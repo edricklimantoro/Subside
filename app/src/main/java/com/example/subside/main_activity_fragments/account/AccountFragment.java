@@ -48,8 +48,7 @@ public class AccountFragment extends Fragment {
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
 
         mAuth = FirebaseAuth.getInstance();
-        DatabaseHelper databaseHelper = new DatabaseHelper();
-        databaseHelper.getOneUserProfile(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        DatabaseHelper.getOne(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 currentUserProfile = snapshot.getValue(UserProfile.class);
