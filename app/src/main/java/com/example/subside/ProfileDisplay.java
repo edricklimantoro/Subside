@@ -1,18 +1,11 @@
 package com.example.subside;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.subside.main_activity_fragments.search.ItemModel;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class ProfileDisplay extends AppCompatActivity {
 

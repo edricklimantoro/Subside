@@ -31,10 +31,22 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-    MyAdapter adapter;
     private final List<UserProfile> list=new ArrayList<>();
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+
+    private SearchView searchView;
+    Button major_fbtn;
+    Button cohort_fbtn;
+    TextView noData;
+
+    String[] fMajors={"All","Accounting","Computer Science","English Education","Math Education", "Industrial Engineering",
+            "Information System", "Management", "Mechanical Engineering", "Visual Communication Design"};
+    String[] fCohort={"All","2019","2020","2021","2022"};
+    String majorSelected="All";
+    String cohortSelected="All";
+    int fMajorspos = 0;
+    int fCohortpos = 0;
 
     private FragmentSearchBinding binding;
 
@@ -44,13 +56,10 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
-
-        recyclerView.setAdapter(new MyAdapter(list,this.getContext()));
 
         DatabaseHelper databaseHelper = new DatabaseHelper();
         databaseHelper.get().addValueEventListener(new ValueEventListener() {
@@ -67,7 +76,181 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        myAdapter = new MyAdapter(list,this.getContext());
+        recyclerView.setAdapter(myAdapter);
+
+        searchView= view.findViewById(R.id.searchView);
+        noData = view.findViewById(R.id.nodata_txt);
+        major_fbtn = view.findViewById(R.id.major_filterbtn);
+        cohort_fbtn = view.findViewById(R.id.cohort_filterbtn);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                newText = newText.toLowerCase();
+                ArrayList<UserProfile> itemFilter = new ArrayList<>();
+                for (UserProfile model: list){
+                    String sname= model.getName().toLowerCase();
+                    if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (sname.contains(newText) && model.getMajor().contains(majorSelected) && model.getMajor().contains(majorSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                        if (sname.contains(newText) && model.getMajor().contains(majorSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (sname.contains(newText) && model.getMajor().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                        if (sname.contains(newText)) {
+                            itemFilter.add(model);
+                        }
+                    }
+                }
+                myAdapter.setFilter(itemFilter);
+                if(itemFilter.isEmpty()){
+                    noData.setVisibility(View.VISIBLE);
+                }
+                else{
+                    noData.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        });
+
+        major_fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                majorDialog();
+            }
+        });
+
+        cohort_fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cohortDialog();
+            }
+        });
+
         return view;
+    }
+
+
+    private void majorDialog(){
+        AlertDialog.Builder builder= new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Filter by Major");
+        builder.setSingleChoiceItems(fMajors, fMajorspos, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                majorSelected=fMajors[i];
+                fMajorspos =i;}
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ArrayList<UserProfile> itemFilter = new ArrayList<>();
+                for (UserProfile model : list){
+                    if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected) && model.getMajor().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                        itemFilter.add(model);
+                    }
+                    myAdapter.setFilter(itemFilter);
+                    if(itemFilter.isEmpty()){
+                        noData.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        noData.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+
+    }
+
+    private void cohortDialog(){
+        AlertDialog.Builder builder= new AlertDialog.Builder(this.getContext());
+        builder.setTitle("Filter by Cohort");
+        builder.setSingleChoiceItems(fCohort,fCohortpos, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                cohortSelected=fCohort[i];
+                fCohortpos=i;}
+        });
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ArrayList<UserProfile> itemFilter = new ArrayList<>();
+                for (UserProfile model : list){
+                    if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected) && model.getMajor().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(majorSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(cohortSelected)) {
+                            itemFilter.add(model);
+                        }
+                    }
+
+                    else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                        itemFilter.add(model);
+                    }
+                    myAdapter.setFilter(itemFilter);
+                    if(itemFilter.isEmpty()){
+                        noData.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        noData.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+
     }
 
 

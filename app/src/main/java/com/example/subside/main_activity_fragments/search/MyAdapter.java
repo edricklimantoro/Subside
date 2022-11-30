@@ -49,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.textPhone.setText(user.getPhoneNum());
         holder.textLinkedin.setText(user.getLinkedIn());
 
-        /*holder.profileItem.setOnClickListener(v -> {
+        holder.profileItem.setOnClickListener(v -> {
             Intent profileIntent = new Intent(context, ProfileDisplay.class);
             profileIntent.putExtra("profile_image",user.getProfPictUri());
             profileIntent.putExtra("profile_name",user.getName());
@@ -61,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             profileIntent.putExtra("profile_linkedin",user.getLinkedIn());
             context.startActivity(profileIntent);
 
-        });*/
+        });
 
     }
 
@@ -96,10 +96,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         }
     }
-    /*public void setFilter(ArrayList<ItemModel> filterModel){
+
+    public void setFilter(ArrayList<UserProfile> filterModel){
         list=new ArrayList<>();
         list.addAll(filterModel);
         notifyDataSetChanged();
-    };*/
+    };
 
 }
