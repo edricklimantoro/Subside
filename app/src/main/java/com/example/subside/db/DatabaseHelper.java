@@ -32,7 +32,7 @@ public class DatabaseHelper {
         return mRef.child(PROFILE_PATH).orderByKey();
     }
 
-    public static Query getOneUserProfile(String uid) {
+    public final Query getOneUserProfile(String uid) {
         return mRef.child(PROFILE_PATH).orderByChild("uid").equalTo(uid);
     }
 
