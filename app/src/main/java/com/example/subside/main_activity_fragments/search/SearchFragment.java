@@ -95,7 +95,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        searchView= view.findViewById(R.id.searchView);
+        searchView= view.findViewById(R.id.mSearchView);
         noData = view.findViewById(R.id.nodata_txt);
         major_fbtn = view.findViewById(R.id.major_filterbtn);
         cohort_fbtn = view.findViewById(R.id.cohort_filterbtn);
