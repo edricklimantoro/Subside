@@ -1,7 +1,10 @@
 package com.example.subside.main_activity_fragments.search;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.subside.R;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.example.subside.internetConnection;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,6 +58,8 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        internetConnection internetConnection = new internetConnection(this.getContext());
+
         recyclerView = view.findViewById(R.id.recyclerview);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
 
@@ -66,12 +72,12 @@ public class SearchFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
         Handler handler = new Handler();
-        //if()
+        if(internetConnection.isConnectingToInternet()){
         handler.postDelayed(()->{
             shimmerFrameLayout.stopShimmer();
             shimmerFrameLayout.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
-        },2000);
+        },2000);}
 
         DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override

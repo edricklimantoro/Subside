@@ -1,5 +1,6 @@
 package com.example.subside.main_activity_fragments.account;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.subside.R;
+import com.example.subside.auth.SignUp;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,6 +63,14 @@ public class AccountFragment extends Fragment {
                 Log.w("getOne", "loadPost:onCancelled", error.toException());
             }
         });
+
+        /*btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SignUp.class);
+                v.getContext().startActivity(intent);
+            }
+        });*/
 
         return view;
     }
