@@ -61,7 +61,7 @@
                     android:textSize="20sp" />
 
                 <SearchView
-                    android:id="@+id/searchView"
+                    android:id="@+id/mSearchView"
                     android:layout_width="370dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
