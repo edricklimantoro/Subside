@@ -41,6 +41,7 @@ public class SignIn extends AppCompatActivity {
         inputPassword = findViewById(R.id.input_password);
         btnSignIn = findViewById(R.id.button_signin);
         progressBar = findViewById(R.id.progress_bar_signin);
+        progressBar.setVisibility(View.INVISIBLE);
 
         btnSignIn.setOnClickListener(v -> {
             performSignIn();
@@ -81,6 +82,7 @@ public class SignIn extends AppCompatActivity {
                         launchMainActivity();
                     } else {
                         Toast.makeText(SignIn.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 }
             });

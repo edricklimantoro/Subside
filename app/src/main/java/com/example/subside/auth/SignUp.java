@@ -42,6 +42,7 @@ public class SignUp extends AppCompatActivity {
         inputConfirmPassword = findViewById(R.id.input_confirmpassword);
         btnSignUp = findViewById(R.id.button_signup);
         progressBar = findViewById(R.id.progress_bar_signup);
+        progressBar.setVisibility(View.INVISIBLE);
 
         btnSignUp.setOnClickListener(v -> {
             performSignUp();
@@ -86,6 +87,7 @@ public class SignUp extends AppCompatActivity {
                         launchCreateProfile();
                     } else {
                         Toast.makeText(SignUp.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 }
             });
