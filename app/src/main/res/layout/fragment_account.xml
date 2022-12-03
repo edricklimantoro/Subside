@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="false"
+    android:paddingBottom="30dp"
     tools:context=".main_activity_fragments.account.AccountFragment">
 
     <ImageView
@@ -237,7 +237,7 @@
                         android:layout_marginTop="4dp"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar, turpis id varius feugiat." />
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="24dp">
@@ -247,18 +247,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:layout_marginStart="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:text="Show SID" />
 
                         <Switch
                             android:id="@+id/acc_switch_showSID"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="230dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginTop="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             android:clickable="false" />
 
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp">
@@ -268,18 +274,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:layout_marginStart="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:text="Allow Featured Profile" />
 
                         <Switch
                             android:id="@+id/acc_switch_allowFeatured"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="230dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginTop="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             android:clickable="false" />
 
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <RelativeLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
@@ -290,16 +302,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
+                            android:layout_marginStart="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             android:text="Hide Account" />
 
                         <Switch
                             android:id="@+id/acc_switch_showAccount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="230dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginTop="0dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             android:clickable="false" />
 
-                    </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -308,7 +326,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-30dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="16dp"
                     android:translationZ="-1dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"

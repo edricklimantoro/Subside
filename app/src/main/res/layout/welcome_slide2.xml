@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="50dp"
     android:background="@drawable/welcome_slide2_bg">
 
     <TextView
         android:id="@+id/slide2_heading"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="120dp"
         android:text="@string/slide2_heading"
         android:textSize="45sp"
         android:textColor="@color/black"
@@ -23,8 +24,9 @@
         android:id="@+id/slide2_desc"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="00dp"
         android:layout_marginTop="20dp"
+        android:lineHeight="24dp"
         android:text="@string/slide2_desc"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -35,17 +37,16 @@
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="0dp"
         android:text="@string/slide2_button_label"
         android:textAllCaps="false"
-        android:fontFamily="@font/productsans_bold"
+        android:fontFamily="@font/productsans_regular"
+        android:background="@drawable/edittext_bg"
+        android:textColor="@color/white"
         android:onClick="launchSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slide2_desc"/>
-<!--        android:background="@color/transparent"-->
-<!--        android:foreground="@drawable/edittext_bg"-->
-<!--        android:textColor="@color/black"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

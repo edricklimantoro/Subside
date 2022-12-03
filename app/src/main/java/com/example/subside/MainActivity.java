@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     static BottomNavigationView navView;
+    public static boolean fromHometoSearch = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setA(){
         navView.setSelectedItemId(R.id.navigation_search);
+        fromHometoSearch = true;
     }
 
 

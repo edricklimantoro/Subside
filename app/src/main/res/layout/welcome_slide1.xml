@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="50dp"
     android:background="@drawable/welcome_slide1_bg">
 
     <TextView
         android:id="@+id/slide1_heading"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="100dp"
         android:text="@string/slide1_heading"
         android:textSize="45sp"
         android:textColor="@color/black"
@@ -21,14 +22,17 @@
 
     <TextView
         android:id="@+id/slide1_desc"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginTop="20dp"
         android:text="@string/slide1_desc"
         android:textSize="16sp"
+        android:lineHeight="24dp"
         android:textColor="@color/black"
         android:fontFamily="@font/productsans_light"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/slide1_heading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

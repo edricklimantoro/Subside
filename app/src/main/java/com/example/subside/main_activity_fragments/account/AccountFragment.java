@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.subside.R;
-import com.example.subside.auth.SignUp;
+import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +28,7 @@ public class AccountFragment extends Fragment {
     private FirebaseAuth mAuth;
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
     private Switch showSID, allowFeatured, showAccount;
-    private Button btnEditProfile, btnLogout;
+    private TextView btnEditProfile, btnLogout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class AccountFragment extends Fragment {
         showSID = view.findViewById(R.id.acc_switch_showSID);
         allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
+        btnLogout = view.findViewById(R.id.acc_logout);
 
         mAuth = FirebaseAuth.getInstance();
         DatabaseHelper.getOne(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -64,13 +65,14 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        /*btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SignUp.class);
-                v.getContext().startActivity(intent);
-            }
-        });*/
+        btnLogout.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent intent = new Intent(getContext(), SignIn.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            v.getContext().startActivity(intent);
+        });
 
         return view;
     }

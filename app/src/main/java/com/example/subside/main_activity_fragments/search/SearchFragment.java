@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.subside.MainActivity;
 import com.example.subside.R;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
@@ -115,6 +118,13 @@ public class SearchFragment extends Fragment {
                 cohortDialog();
             }
         });
+
+        if (MainActivity.fromHometoSearch) {
+            // Set focus on searchview and show keyboard
+            searchView.requestFocus();
+//            ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(view, InputMethodManager.RESULT_SHOWN);
+            MainActivity.fromHometoSearch = false;
+        }
 
         return view;
     }
