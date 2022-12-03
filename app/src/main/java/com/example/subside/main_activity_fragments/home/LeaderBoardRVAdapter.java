@@ -1,11 +1,11 @@
-package com.example.subside.main_activity_fragments.search;
+package com.example.subside.main_activity_fragments.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,42 +21,39 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdapter.LeaderBoardViewHolder>{
 
     Context context;
     List<UserProfile> list;
     private String userUnlockedProfiles = "";
 
-    public MyAdapter(List<UserProfile> list, Context context){
+    public LeaderBoardRVAdapter(List<UserProfile> list, Context context){
         this.context=context;
         this.list=list;
+        Log.d("KSDKFD", "RV ADAPTER CREATED");
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LeaderBoardRVAdapter.LeaderBoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         setUserUnlockedProfiles();
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
-        return new MyViewHolder(v);
+        View v = LayoutInflater.from(context).inflate(R.layout.leaderboard_item,parent,false);
+        return new LeaderBoardViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LeaderBoardViewHolder holder, int position) {
         UserProfile user = list.get(position);
         String setMajorFacultyCohort = user.getMajor() +" | " +user.getFaculty() +" "+user.getCohort();
 
+        holder.textRank.setText(Integer.toString(position+1));
         holder.textName.setText(user.getName());
-        holder.textMajor.setText(setMajorFacultyCohort);
-        holder.textID.setText(!user.isHideSID() ? user.getSid() : "**********");
-        holder.textIG.setText(user.getInstagram());
-        holder.textEmail.setText(user.getEmail());
-        holder.textPhone.setText(user.getPhoneNum());
-        holder.textLinkedin.setText(user.getLinkedIn());
+        holder.textCount.setText(Integer.toString(user.getUnlockedProfilesCount()));
+        Log.d("ONBINDVIEWHOLDER:", Integer.toString(list.size()));
 
-        holder.profileItem.setOnClickListener(v -> {
+        holder.leaderboardItem.setOnClickListener(v -> {
             Intent profileIntent = new Intent(context, ProfileDisplay.class);
             profileIntent.putExtra("profile_uid",user.getUid());
             profileIntent.putExtra("profile_image",user.getProfPictUri());
@@ -72,7 +69,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             context.startActivity(profileIntent);
 
         });
-
     }
 
     @Override
@@ -80,38 +76,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class LeaderBoardViewHolder extends RecyclerView.ViewHolder {
+        TextView textRank;
         TextView textName;
-        TextView textMajor;
-        ImageView imageIcon;
-        TextView textID;
-        TextView textIG;
-        TextView textEmail;
-        TextView textPhone;
-        TextView textLinkedin;
-        CardView profileItem;
+        TextView textCount;
+        CardView leaderboardItem;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public LeaderBoardViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textName = itemView.findViewById(R.id.text_name);
-            textMajor = itemView.findViewById(R.id.text_major);
-            imageIcon = itemView.findViewById(R.id.imageList);
-            textIG=itemView.findViewById(R.id.text_ig);
-            textID=itemView.findViewById(R.id.text_id);
-            textEmail=itemView.findViewById(R.id.text_email);
-            textPhone=itemView.findViewById(R.id.text_phone);
-            textLinkedin=itemView.findViewById(R.id.text_linkedin);
-            profileItem=itemView.findViewById(R.id.ProfileItem);
+            textRank = itemView.findViewById(R.id.text_rank);
+            textName = itemView.findViewById(R.id.leaderbrd_name);
+            textCount = itemView.findViewById(R.id.leaderbrd_count);
+            leaderboardItem = itemView.findViewById(R.id.LeaderBoardItem);
 
         }
     }
-
-    public void setFilter(ArrayList<UserProfile> filterModel){
-        list=new ArrayList<>();
-        list.addAll(filterModel);
-        notifyDataSetChanged();
-    };
 
     private void setUserUnlockedProfiles() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -126,5 +106,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         });
     }
-
 }

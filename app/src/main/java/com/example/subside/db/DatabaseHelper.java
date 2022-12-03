@@ -34,4 +34,9 @@ public class DatabaseHelper {
         return mRef.child(PROFILE_PATH).child(uid);
     }
 
+    public static Query getSortedByFunFact() {
+        // Ascending order by unlocked profiles count
+        return mRef.child(PROFILE_PATH).orderByChild("unlockedProfilesCount");
+    }
+
 }

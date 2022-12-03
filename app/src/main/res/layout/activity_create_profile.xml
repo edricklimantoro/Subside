@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/anon1" />
+                android:src="@drawable/black_profile_picture" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/label_fullName"

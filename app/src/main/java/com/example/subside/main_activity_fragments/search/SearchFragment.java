@@ -10,8 +10,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -87,7 +85,9 @@ public class SearchFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot users: snapshot.getChildren()){
                     UserProfile datas = users.getValue(UserProfile.class);
-                    list.add(datas);
+                    if (!datas.isHideAccount()) {
+                        list.add(datas);
+                    }
                 }
                 setAdapter();
             }
