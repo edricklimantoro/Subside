@@ -110,6 +110,7 @@ public class SearchFragment extends Fragment {
         dataRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                needshimmer=true;
                 dataRefresh();
                 dataRefresh.setRefreshing(false);
             }
@@ -120,7 +121,6 @@ public class SearchFragment extends Fragment {
 
     private void dataRefresh(){
         list.clear();
-        needshimmer=true;
         shimmerAnimation();
         DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override
