@@ -142,133 +142,461 @@
                     android:orientation="horizontal">
 
                     
-                    <Button
-                        android:id="@+id/MajorSearch1"
+                    <!-- computer science -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/MajorSearch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/compsci"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_comp_sci_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="30dp"
+                        app:cardCornerRadius="13dp"
+                        app:cardElevation="5dp">
 
-                    <Button
-                        android:id="@+id/MajorSearch2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/infosys"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_info_sys_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
 
-                    <Button
-                        android:id="@+id/MajorSearch3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/industrial"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_ind_eng_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                            <ImageView
+                                android:id="@+id/image_compsci"
+                                android:layout_width="230dp"
+                                android:layout_height="180dp"
+                                android:src="@drawable/compsci"
+                                android:scaleType="centerCrop"/>
 
-                    <Button
-                        android:id="@+id/MajorSearch4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/mechanical"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_mech_eng_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                            <TextView
+                                android:id="@+id/major_compsci"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginHorizontal="8dp"
+                                android:textAlignment="center"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/productsans_regular"
+                                android:textSize="18sp"
+                                android:text="@string/Home_comp_sci_major"/>
 
-                    <Button
-                        android:id="@+id/MajorSearch5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/vcd"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_vcd_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                            <TextView
+                                android:id="@+id/faculty_fet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="16dp"
+                                android:layout_marginHorizontal="8dp"
+                                android:textAlignment="center"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/productsans_regular"
+                                android:textSize="14sp"
+                                android:text="@string/Home_fet_faculty"/>
 
-                    <Button
-                        android:id="@+id/MajorSearch6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/accounting"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_acc_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                        </LinearLayout>
 
-                    <Button
-                        android:id="@+id/MajorSearch7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/english"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_eng_edu_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                    </androidx.cardview.widget.CardView>
 
-                    <Button
-                        android:id="@+id/MajorSearch8"
+                    <!-- information systems -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/management"
-                        android:drawablePadding="0sp"
-                        android:outlineAmbientShadowColor="#171414"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:shadowColor="#3C3737"
-                        android:text="@string/Home_manag_major"
-                        android:textAlignment="textStart"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#808080"></Button>
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_infosys"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/infosys"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_infosys"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_info_sys_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fet2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fet_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- mechanical engineering -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_mecheng"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/mechanical"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_mecheng"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_mech_eng_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fet3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fet_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- industrial engineering -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_indeng"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/industrial"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_indeng"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_ind_eng_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fet4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fet_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- vcd -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_vcd"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/vcd"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_vcd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_vcd_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fet5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fet_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- management -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_vcd"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/management"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_manag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_manag_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fob_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- accounting -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_acc"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/accounting"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_acc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_acc_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_fob2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_fob_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- english education -->
+                    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/MajorSearch8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="30dp"
+                    app:cardCornerRadius="13dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:id="@+id/image_engedu"
+                            android:layout_width="230dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/english"
+                            android:scaleType="centerCrop"/>
+
+                        <TextView
+                            android:id="@+id/major_engedu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="18sp"
+                            android:text="@string/Home_eng_edu_major"/>
+
+                        <TextView
+                            android:id="@+id/faculty_foe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:textAlignment="center"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/productsans_regular"
+                            android:textSize="14sp"
+                            android:text="@string/Home_foe_faculty"/>
+
+                    </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </HorizontalScrollView>
 
