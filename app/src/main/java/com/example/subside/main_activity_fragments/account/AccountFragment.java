@@ -40,11 +40,19 @@ public class AccountFragment extends Fragment {
     private ShimmerFrameLayout accountShimmer;
     private ScrollView accountShow;
     internetConnection connection;
+    boolean needshimmer;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        if(savedInstanceState!=null){
+            needshimmer=savedInstanceState.getBoolean("needshimmer",false);
+        }
+        else{
+            needshimmer=true;
+        }
 
         connection = new internetConnection(this.getContext());
 
@@ -125,6 +133,7 @@ public class AccountFragment extends Fragment {
 
     private void shimmerAnimation() {
 
+        if(needshimmer||!connection.isConnectingToInternet()){
         accountShow.setVisibility(View.GONE);
         accountShimmer.setVisibility(View.VISIBLE);
         accountShimmer.startShimmer();
@@ -144,7 +153,19 @@ public class AccountFragment extends Fragment {
                 };
             },10000);
         }
+    }else{
+            accountShimmer.setVisibility(View.GONE);
+            accountShimmer.stopShimmer();
+            accountShow.setVisibility(View.VISIBLE);
+        }
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("needshimmer",false);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

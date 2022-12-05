@@ -37,6 +37,7 @@ public class SearchFragment extends Fragment {
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     ShimmerFrameLayout shimmerFrameLayout;
+    boolean needshimmer;
 
     private SearchView searchView;
     Button major_fbtn;
@@ -60,6 +61,13 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        if(savedInstanceState!=null){
+            needshimmer=savedInstanceState.getBoolean("needshimmer",false);
+        }
+        else{
+            needshimmer=true;
+        }
+
         connection = new internetConnection(this.getContext());
         recyclerView = view.findViewById(R.id.recyclerview);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
@@ -70,24 +78,25 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
-        DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot users: snapshot.getChildren()){
-                    UserProfile datas = users.getValue(UserProfile.class);
-                    if (!datas.isHideAccount()) {
-                        list.add(datas);
+        if(list.isEmpty()) {
+            DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot users : snapshot.getChildren()) {
+                        UserProfile datas = users.getValue(UserProfile.class);
+                        if (!datas.isHideAccount()) {
+                            list.add(datas);
+                        }
                     }
+                    setAdapter();
                 }
-                setAdapter();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-
+                }
+            });
+        }
         searchView= view.findViewById(R.id.mSearchView);
         noData = view.findViewById(R.id.nodata_txt);
         major_fbtn = view.findViewById(R.id.major_filterbtn);
@@ -130,6 +139,7 @@ public class SearchFragment extends Fragment {
 
     private void dataRefresh(){
         list.clear();
+        needshimmer=true;
         shimmerAnimation();
         DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override
@@ -178,7 +188,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void shimmerAnimation(){
-        if(list.isEmpty()){
+        if(needshimmer||!connection.isConnectingToInternet()){
             recyclerView.setVisibility(View.GONE);
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             shimmerFrameLayout.startShimmer();
@@ -202,6 +212,7 @@ public class SearchFragment extends Fragment {
         }
         else{
             shimmerFrameLayout.setVisibility(View.GONE);
+            shimmerFrameLayout.stopShimmer();
             recyclerView.setVisibility(View.VISIBLE);
         }
     }
@@ -308,6 +319,7 @@ public class SearchFragment extends Fragment {
         searchView.setQuery("",false);
         searchView.clearFocus();
         searchText="";
+        outState.putBoolean("needshimmer",false);
     }
 
     @Override
