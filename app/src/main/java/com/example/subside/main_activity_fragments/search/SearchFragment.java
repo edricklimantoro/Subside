@@ -72,31 +72,12 @@ public class SearchFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
 
-        shimmerAnimation();
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
-        if(list.isEmpty()) {
-            DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot users : snapshot.getChildren()) {
-                        UserProfile datas = users.getValue(UserProfile.class);
-                        if (!datas.isHideAccount()) {
-                            list.add(datas);
-                        }
-                    }
-                    setAdapter();
-                }
+        dataRefresh();
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
         searchView= view.findViewById(R.id.mSearchView);
         noData = view.findViewById(R.id.nodata_txt);
         major_fbtn = view.findViewById(R.id.major_filterbtn);

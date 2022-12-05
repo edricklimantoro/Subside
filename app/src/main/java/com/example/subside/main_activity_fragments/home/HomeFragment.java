@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.subside.MainActivity;
 import com.example.subside.R;
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
     internetConnection connection;
     ShimmerFrameLayout leaderBoardShimmer;
     ShimmerFrameLayout featuredShimmer;
+    SwipeRefreshLayout homeRefresh;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,8 +60,25 @@ public class HomeFragment extends Fragment {
         leaderBoardShimmer = view.findViewById(R.id.leaderbrd_shimmer);
         featuredShimmer = view.findViewById(R.id.featured_shimmer);
 
-        shimmerAnimation();
+        homeRefresh = view.findViewById(R.id.homeRefresh);
+
         // userProfile query
+        userProfileQuery();
+
+        homeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userProfiles.clear();
+                userProfileQuery();
+                homeRefresh.setRefreshing(false);
+            }
+        });
+
+        return view;
+    }
+
+    private void userProfileQuery(){
+        shimmerAnimation();
         DatabaseHelper.getSortedByFunFact().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,8 +99,6 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
-        return view;
     }
 
     private void shimmerAnimation(){
