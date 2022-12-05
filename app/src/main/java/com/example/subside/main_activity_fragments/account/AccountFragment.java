@@ -3,10 +3,12 @@ package com.example.subside.main_activity_fragments.account;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ import com.example.subside.R;
 import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.example.subside.internetConnection;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +34,16 @@ public class AccountFragment extends Fragment {
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
     private Switch showSID, allowFeatured, showAccount;
     private TextView btnEditProfile, btnLogout;
+    private ShimmerFrameLayout accountShimmer;
+    private ScrollView accountShow;
+    internetConnection connection;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        connection = new internetConnection(this.getContext());
 
         name = view.findViewById(R.id.acc_name);
         major = view.findViewById(R.id.acc_major);
@@ -51,6 +60,10 @@ public class AccountFragment extends Fragment {
         allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
         btnLogout = view.findViewById(R.id.acc_logout);
+        accountShimmer = view.findViewById(R.id.accountShimmer);
+        accountShow = view.findViewById(R.id.accountShow);
+
+        shimmerAnimation();
 
         mAuth = FirebaseAuth.getInstance();
         DatabaseHelper.getOne(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -105,6 +118,28 @@ public class AccountFragment extends Fragment {
         showAccount.setChecked(!currentUserProfile.isHideAccount());
     }
 
+    private void shimmerAnimation() {
+
+        accountShow.setVisibility(View.GONE);
+        accountShimmer.setVisibility(View.VISIBLE);
+        accountShimmer.startShimmer();
+
+        Handler handler2 = new Handler();
+        if (connection.isConnectingToInternet()) {
+            handler2.postDelayed(() -> {
+                accountShimmer.stopShimmer();
+                accountShimmer.setVisibility(View.GONE);
+                accountShow.setVisibility(View.VISIBLE);
+            }, 2000);
+        }
+        else {
+            handler2.postDelayed(()->{
+                if(connection.getCloseDialog()){
+                    shimmerAnimation();
+                };
+            },10000);
+        }
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
