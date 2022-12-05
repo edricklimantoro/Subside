@@ -17,6 +17,13 @@
     <string name="have_an_account">Have an Account?</string>
     <string name="SUBSIDE."><font color="#af01f3">SU</font>BSIDE.</string>
     <string name="Home_comp_sci_major"> <font color="#808080"><b>Computer Science</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_info_sys_major"> <font color="#808080"><b>Information Systems</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_ind_eng_major"> <font color="#808080"><b>Industrial Engineering</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_mech_eng_major"> <font color="#808080"><b>Mechanical Engineering</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_vcd_major"> <font color="#808080"><b>Visual Communication Design</b> <small>\n  Faculty of Engineering \n  and Technology</small></font></string>
+    <string name="Home_acc_major"> <font color="#808080"><b>Accounting</b> <small>\n  Faculty of Business</small></font></string>
+    <string name="Home_manag_major"> <font color="#808080"><b>Management</b> <small>\n  Faculty of Business</small></font></string>
+    <string name="Home_eng_edu_major"> <font color="#808080"><b>English Education</b> <small>\n  Faculty of Education</small></font></string>
     <string name="Home_profile_placeholder"><font color="#808080"><b>Name</b><small>\n Major goes here</small></font></string>
 
 </resources>
