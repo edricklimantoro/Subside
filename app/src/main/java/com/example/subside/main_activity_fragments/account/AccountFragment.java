@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.subside.R;
 import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
@@ -31,6 +33,7 @@ public class AccountFragment extends Fragment {
 
     private UserProfile currentUserProfile;
     private FirebaseAuth mAuth;
+    private ImageView profImg;
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
     private Switch showSID, allowFeatured, showAccount;
     private TextView btnEditProfile, btnLogout;
@@ -45,6 +48,7 @@ public class AccountFragment extends Fragment {
 
         connection = new internetConnection(this.getContext());
 
+        profImg = view.findViewById(R.id.acc_profile_img);
         name = view.findViewById(R.id.acc_name);
         major = view.findViewById(R.id.acc_major);
         faculty = view.findViewById(R.id.acc_faculty);
@@ -102,6 +106,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void setProfileValues() {
+        Glide.with(getContext()).load(currentUserProfile.getProfPictUri()).placeholder(R.drawable.black_profile_picture).dontAnimate().into(profImg);
         name.setText(currentUserProfile.getName().isEmpty() ? "--" : currentUserProfile.getName());
         major.setText(currentUserProfile.getMajor().isEmpty() ? "--" : currentUserProfile.getMajor() + " |");
         faculty.setText(currentUserProfile.getFaculty().isEmpty() ? "--" : currentUserProfile.getFaculty());
