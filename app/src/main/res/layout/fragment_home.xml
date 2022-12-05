@@ -46,21 +46,21 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="184dp"
+                android:layout_height="100dp"
                 android:background="@drawable/home_bg">
 
-                <TextView
-                    android:id="@+id/text_home"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="80dp"
-                    android:fontFamily="@font/productsans_black"
-                    android:text="Hobbies"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/text_home"-->
+<!--                    android:layout_width="98dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="80dp"-->
+<!--                    android:fontFamily="@font/productsans_black"-->
+<!--                    android:text="Hobbies"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="20sp" />-->
 
                 <SearchView
                     android:id="@+id/mSearchView"
@@ -70,63 +70,63 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="25dp"
                     android:background="@drawable/search_view_bg"
                     app:iconifiedByDefault="false"
                     app:showDividers="none">
 
                 </SearchView>
 
-                <HorizontalScrollView
-                    android:id="@+id/horizontalScrollView"
-                    android:layout_width="370dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="113dp">
+<!--                <HorizontalScrollView-->
+<!--                    android:id="@+id/horizontalScrollView"-->
+<!--                    android:layout_width="370dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginTop="113dp">-->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <Button
-                            android:id="@+id/button1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="@color/white"
-                            android:text="Placeholder" />
+<!--                        <Button-->
+<!--                            android:id="@+id/button1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            android:text="Placeholder" />-->
 
-                        <Button
-                            android:id="@+id/button2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="@color/white"
-                            android:text="Placeholder" />
+<!--                        <Button-->
+<!--                            android:id="@+id/button2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            android:text="Placeholder" />-->
 
-                        <Button
-                            android:id="@+id/button3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="@color/white"
-                            android:text="Placeholder" />
+<!--                        <Button-->
+<!--                            android:id="@+id/button3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            android:text="Placeholder" />-->
 
-                        <Button
-                            android:id="@+id/button4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="@color/white"
-                            android:text="Placeholder" />
-                    </LinearLayout>
-                </HorizontalScrollView>
+<!--                        <Button-->
+<!--                            android:id="@+id/button4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:backgroundTint="@color/white"-->
+<!--                            android:text="Placeholder" />-->
+<!--                    </LinearLayout>-->
+<!--                </HorizontalScrollView>-->
 
             </RelativeLayout>
 
