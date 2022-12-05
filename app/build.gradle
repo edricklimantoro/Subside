@@ -3,6 +3,7 @@ plugins {
 
     // Google services Gradle plugin
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -56,6 +57,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-storage'
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'

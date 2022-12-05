@@ -2,6 +2,7 @@ package com.example.subside;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -49,7 +50,7 @@ public class ProfileDisplay extends AppCompatActivity {
 
         intent = getIntent();
 
-        imageProfile.setImageResource(intent.getIntExtra("profile_image",0));
+    //    imageProfile.setImageResource(intent.getIntExtra("profile_image",0));
         nameProfile.setText(intent.getStringExtra("profile_name"));
         majorProfile.setText(intent.getStringExtra("profile_major"));
         idProfile.setText(intent.getStringExtra("profile_Id"));
@@ -106,6 +107,8 @@ public class ProfileDisplay extends AppCompatActivity {
     }
 
     private boolean isProfileUnlocked() {
+        Log.i("USER UNLOCKED PROFIELS:", intent.getStringExtra("user_unlocked_profiles"));
+        Log.i("PROFILE UID::::::", intent.getStringExtra("profile_uid"));
         return intent.getStringExtra("user_unlocked_profiles").contains(intent.getStringExtra("profile_uid"));
     }
 }

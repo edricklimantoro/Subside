@@ -1,10 +1,7 @@
 package com.example.subside.main_activity_fragments.search;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.subside.MainActivity;
 import com.example.subside.R;
@@ -51,6 +49,9 @@ public class SearchFragment extends Fragment {
     String[] fCohort={"All","2019","2020","2021","2022"};
     String majorSelected="All";
     String cohortSelected="All";
+
+    SwipeRefreshLayout dataRefresh;
+    internetConnection connection;
     int fMajorspos = 0;
     int fCohortpos = 0;
 
@@ -59,26 +60,15 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        internetConnection internetConnection = new internetConnection(this.getContext());
-
+        connection = new internetConnection(this.getContext());
         recyclerView = view.findViewById(R.id.recyclerview);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
 
-        recyclerView.setVisibility(View.GONE);
-        shimmerFrameLayout.setVisibility(View.VISIBLE);
-        shimmerFrameLayout.startShimmer();
+        shimmerAnimation();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
-
-        Handler handler = new Handler();
-        if(internetConnection.isConnectingToInternet()){
-        handler.postDelayed(()->{
-            shimmerFrameLayout.stopShimmer();
-            shimmerFrameLayout.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-        },2000);}
 
         DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
             @Override
@@ -126,9 +116,39 @@ public class SearchFragment extends Fragment {
             MainActivity.fromHometoSearch = false;
         }
 
+        dataRefresh = view.findViewById(R.id.refreshSearchData);
+        dataRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dataRefresh();
+                dataRefresh.setRefreshing(false);
+            }
+        });
+
         return view;
     }
 
+    private void dataRefresh(){
+        list.clear();
+        shimmerAnimation();
+        DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot users: snapshot.getChildren()){
+                    UserProfile datas = users.getValue(UserProfile.class);
+                    list.add(datas);
+                }
+                setAdapter();
+                searchUser();
+                filterUser();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     public void setAdapter(){
         myAdapter = new MyAdapter(list,this.getContext());
         recyclerView.setAdapter(myAdapter);
@@ -155,6 +175,35 @@ public class SearchFragment extends Fragment {
         builder.setNegativeButton("Cancel", null);
         builder.show();
 
+    }
+
+    private void shimmerAnimation(){
+        if(list.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            shimmerFrameLayout.startShimmer();
+
+            Handler handler2 = new Handler();
+            if(connection.isConnectingToInternet()){
+                handler2.postDelayed(()->{
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                },2000);}
+            else {
+                handler2.postDelayed(()->{
+                    if(connection.getCloseDialog()){
+                        dataRefresh();
+                        dataRefresh.setRefreshing(false);
+                    };
+                },10000);
+
+            }
+        }
+        else{
+            shimmerFrameLayout.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     private void cohortDialog(){
