@@ -16,11 +16,12 @@ import android.widget.Toast;
 import com.example.subside.db.Constants;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.example.subside.main_activity_fragments.account.AccountFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 
-public class CreateProfile extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     private Spinner majorSpinner, facultySpinner;
     private ImageView profileImage;
@@ -33,7 +34,7 @@ public class CreateProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_profile);
+        setContentView(R.layout.activity_update_profile);
 
         majorSpinner = findViewById(R.id.majorSpinner);
         facultySpinner = findViewById(R.id.facultySpinner);
@@ -49,7 +50,6 @@ public class CreateProfile extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         populateSpinner();
-        initializeProfile();
 
         btnSubmit = findViewById(R.id.submitCreateProfile);
         btnSubmit.setOnClickListener(view -> {
@@ -87,18 +87,6 @@ public class CreateProfile extends AppCompatActivity {
         });
     }
 
-    private void initializeProfile() {
-        userProfile = new UserProfile();
-        userProfile.setUid(mAuth.getCurrentUser().getUid());
-        userProfile.setProfPictUri(Constants.DEFAULT_PROFILE_PICT_URI);
-
-        DatabaseHelper.add(mAuth.getCurrentUser().getUid(), userProfile).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-            } else {
-            }
-        });
-    }
-
     private void performSubmitProfile() {
         HashMap<String, Object> userUpdates = new HashMap<>();
         // TODO: Update profile image
@@ -115,11 +103,11 @@ public class CreateProfile extends AppCompatActivity {
 
         DatabaseHelper.update(mAuth.getCurrentUser().getUid(), userUpdates).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(CreateProfile.this, "Profile Setup Successful", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(CreateProfile.this, MainActivity.class));
+                Toast.makeText(EditProfile.this, "Profile Update Successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EditProfile.this, AccountFragment.class));
                 finish();
             } else {
-                Toast.makeText(CreateProfile.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfile.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
             }
         });
     }

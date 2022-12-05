@@ -16,6 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.subside.CreateProfile;
+import com.example.subside.EditProfile;
+import com.example.subside.MainActivity;
 import com.example.subside.R;
 import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
@@ -60,6 +63,7 @@ public class AccountFragment extends Fragment {
         allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
         btnLogout = view.findViewById(R.id.acc_logout);
+        btnEditProfile = view.findViewById(R.id.acc_edit_profile);
         accountShimmer = view.findViewById(R.id.accountShimmer);
         accountShow = view.findViewById(R.id.accountShow);
 
@@ -76,6 +80,13 @@ public class AccountFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("getOne", "loadPost:onCancelled", error.toException());
+            }
+        });
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditProfile.class);
+                startActivity(intent);
             }
         });
 
