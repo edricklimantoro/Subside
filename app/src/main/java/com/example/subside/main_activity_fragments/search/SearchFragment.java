@@ -286,6 +286,20 @@ public class SearchFragment extends Fragment {
                 }
             }
         }
+
+        if(majorSelected.equals("All")) major_fbtn.setText("MAJOR: All");
+        else if(majorSelected.equals("Accounting")) major_fbtn.setText("MAJOR: ACT");
+        else if(majorSelected.equals("Computer Science")) major_fbtn.setText("MAJOR: CS ");
+        else if(majorSelected.equals("English Education")) major_fbtn.setText("MAJOR: Eng");
+        else if(majorSelected.equals("Math Education")) major_fbtn.setText("MAJOR: Mth");
+        else if(majorSelected.equals("Industrial Engineering")) major_fbtn.setText("MAJOR: IE ");
+        else if(majorSelected.equals("Information System")) major_fbtn.setText("MAJOR: IS ");
+        else if(majorSelected.equals("Management")) major_fbtn.setText("MAJOR: MNG");
+        else if(majorSelected.equals("Mechanical Engineering")) major_fbtn.setText("MAJOR: ME ");
+        else if(majorSelected.equals("Visual Communication Design")) major_fbtn.setText("MAJOR: VCD");
+
+        cohort_fbtn.setText("COHORT: "+cohortSelected);
+
         myAdapter.setFilter(itemFilter);
         if (itemFilter.isEmpty()) {
             noData.setVisibility(View.VISIBLE);
