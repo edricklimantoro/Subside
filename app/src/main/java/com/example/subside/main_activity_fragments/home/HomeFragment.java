@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,13 +22,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView leaderBoardRV;
-    ArrayList<UserProfile> leaderBoard = new ArrayList<>();
-    LeaderBoardRVAdapter leaderBoardAdapter;
+    private RecyclerView leaderBoardRV, featuredRV;
+    private final ArrayList<UserProfile> userProfiles = new ArrayList<>();
+    private ArrayList<UserProfile> leaderBoard = new ArrayList<>();
+    private ArrayList<UserProfile> featuredProfiles = new ArrayList<>();
+    private LeaderBoardRVAdapter leaderBoardAdapter;
+    private FeaturedRVAdapter featuredAdapter;
+    private final int LDR_BRD_LENGTH = 3, FEATURED_LENGTH = 3;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,21 +42,26 @@ public class HomeFragment extends Fragment {
         leaderBoardRV.setHasFixedSize(true);
         leaderBoardRV.setLayoutManager(new LinearLayoutManager(this.getContext()));
         leaderBoardRV.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
-        // leaderboard query
+
+        featuredRV = view.findViewById(R.id.featured_recyclerView);
+        featuredRV.setHasFixedSize(true);
+        featuredRV.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        // userProfile query
         DatabaseHelper.getSortedByFunFact().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long count = 0;
-                long length = snapshot.getChildrenCount();
+                userProfiles.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    count++;
-                    if (count > length - 3) {
-                        UserProfile user = child.getValue(UserProfile.class);
-                        leaderBoard.add(user);
+                    UserProfile user = child.getValue(UserProfile.class);
+                    if (!user.isHideAccount()) {
+                        userProfiles.add(user);
                     }
                 }
-                Collections.reverse(leaderBoard);
-                setAdapter();
+                setLeaderBoard();   // add to leaderboard list
+                setFeatured();      // add to featured list
+                setLeaderBoardAdapter();
+                setFeaturedAdapter();
             }
 
             @Override
@@ -65,10 +72,44 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void setAdapter() {
+    private void setLeaderBoard() {
+        int length = userProfiles.size();
+        ArrayList<UserProfile> currTopUsers = new ArrayList<>();
+        for (int i = 1; i <= LDR_BRD_LENGTH; i++) {
+            currTopUsers.add(userProfiles.get(length - i));
+        }
+        Log.d("SLDKFJSLDKFJS", currTopUsers.toString());
+        leaderBoard = currTopUsers;
+        setLeaderBoardAdapter();
+    }
+
+    private void setFeatured() {
+        int length = userProfiles.size();
+        ArrayList<UserProfile> currFeatured = new ArrayList<>();
+        UserProfile randUser;
+        for (int i = 1; i <= FEATURED_LENGTH; i++) {
+            randUser = userProfiles.get((int)(Math.random() * length));
+            if (randUser.isDisableFeatured() || currFeatured.contains(randUser)) {
+                // don't add user, reset this iteration
+                i--;
+                continue;
+            }
+            currFeatured.add(randUser);
+        }
+        featuredProfiles = currFeatured;
+        setFeaturedAdapter();
+    }
+
+    private void setLeaderBoardAdapter() {
         leaderBoardAdapter = new LeaderBoardRVAdapter(leaderBoard,this.getContext());
         leaderBoardRV.setAdapter(leaderBoardAdapter);
         leaderBoardAdapter.notifyDataSetChanged();
+    }
+
+    private void setFeaturedAdapter() {
+        featuredAdapter = new FeaturedRVAdapter(featuredProfiles,this.getContext());
+        featuredRV.setAdapter(featuredAdapter);
+        featuredAdapter.notifyDataSetChanged();
     }
 
     @Override

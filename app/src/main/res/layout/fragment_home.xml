@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="80dp"
         android:scaleType="centerCrop"
         android:src="@drawable/banner_background"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +30,10 @@
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11">
@@ -63,12 +64,12 @@
 
                 <SearchView
                     android:id="@+id/mSearchView"
-                    android:layout_width="370dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/search_view_bg"
                     app:iconifiedByDefault="false"
@@ -284,7 +285,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/leaderbrd_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/leaderboard_item"/>
 
             <TextView
@@ -297,72 +298,13 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="#FAFAFA"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/Feat_prof1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/black_profile_picture"
-                        android:drawablePadding="0sp"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:text="@string/Home_profile_placeholder"
-                        android:textAlignment="center"
-                        android:textColor="#808080"></Button>
-
-                    <Button
-                        android:id="@+id/Feat_prof2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/black_profile_picture"
-                        android:drawablePadding="0sp"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:text="@string/Home_profile_placeholder"
-                        android:textAlignment="center"
-                        android:textColor="#808080"></Button>
-
-                    <Button
-                        android:id="@+id/Feat_prof3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/black_profile_picture"
-                        android:drawablePadding="0sp"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:text="@string/Home_profile_placeholder"
-                        android:textAlignment="center"
-                        android:textColor="#808080"></Button>
-
-                    <Button
-                        android:id="@+id/Feat_prof4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableTop="@drawable/black_profile_picture"
-                        android:drawablePadding="0sp"
-                        android:paddingHorizontal="10dp"
-                        android:paddingTop="0dp"
-                        android:text="@string/Home_profile_placeholder"
-                        android:textAlignment="center"
-                        android:textColor="#808080"></Button>
-                </LinearLayout>
-            </HorizontalScrollView>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/featured_recyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="90dp"
+                tools:listitem="@layout/featured_item" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

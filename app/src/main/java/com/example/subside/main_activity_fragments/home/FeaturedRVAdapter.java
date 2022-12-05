@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,35 +24,34 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdapter.LeaderBoardViewHolder>{
+public class FeaturedRVAdapter extends RecyclerView.Adapter<FeaturedRVAdapter.FeaturedViewHolder>{
 
     Context context;
     List<UserProfile> list;
     private String userUnlockedProfiles = "";
 
-    public LeaderBoardRVAdapter(List<UserProfile> list, Context context){
+    public FeaturedRVAdapter(List<UserProfile> list, Context context){
         this.context=context;
         this.list=list;
     }
 
     @NonNull
     @Override
-    public LeaderBoardRVAdapter.LeaderBoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FeaturedRVAdapter.FeaturedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         setUserUnlockedProfiles();
-        View v = LayoutInflater.from(context).inflate(R.layout.leaderboard_item,parent,false);
-        return new LeaderBoardViewHolder(v);
+        View v = LayoutInflater.from(context).inflate(R.layout.featured_item,parent,false);
+        return new FeaturedViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LeaderBoardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
         UserProfile user = list.get(position);
         String setMajorFacultyCohort = user.getMajor() +" | " +user.getFaculty() +" "+user.getCohort();
 
-        holder.textRank.setText(Integer.toString(position+1));
         holder.textName.setText(user.getName());
-        holder.textCount.setText(Integer.toString(user.getUnlockedProfilesCount()));
+        holder.textMajor.setText(user.getMajor());
 
-        holder.leaderboardItem.setOnClickListener(v -> {
+        holder.featuredItem.setOnClickListener(v -> {
             Intent profileIntent = new Intent(context, ProfileDisplay.class);
             profileIntent.putExtra("profile_uid",user.getUid());
             profileIntent.putExtra("profile_image",user.getProfPictUri());
@@ -74,19 +74,19 @@ public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdap
         return list.size();
     }
 
-    public static class LeaderBoardViewHolder extends RecyclerView.ViewHolder {
-        TextView textRank;
+    public static class FeaturedViewHolder extends RecyclerView.ViewHolder {
+        ImageView profileImage;
         TextView textName;
-        TextView textCount;
-        CardView leaderboardItem;
+        TextView textMajor;
+        CardView featuredItem;
 
-        public LeaderBoardViewHolder(@NonNull View itemView) {
+        public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textRank = itemView.findViewById(R.id.text_rank);
-            textName = itemView.findViewById(R.id.leaderbrd_name);
-            textCount = itemView.findViewById(R.id.leaderbrd_count);
-            leaderboardItem = itemView.findViewById(R.id.LeaderBoardItem);
+            profileImage = itemView.findViewById(R.id.featured_img);
+            textName = itemView.findViewById(R.id.featured_name);
+            textMajor = itemView.findViewById(R.id.featured_major);
+            featuredItem = itemView.findViewById(R.id.FeaturedItem);
 
         }
     }
