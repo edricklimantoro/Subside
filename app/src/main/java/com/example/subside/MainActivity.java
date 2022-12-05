@@ -3,9 +3,11 @@ package com.example.subside;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.example.subside.main_activity_fragments.search.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,6 +20,18 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     static BottomNavigationView navView;
     public static boolean fromHometoSearch = false;
+
+    public static String majorSelected="All";
+    public static int fMajorspos = 0;
+    public static String[] fMajors={"All","Accounting","Computer Science","English Education","Math Education", "Industrial Engineering",
+            "Information System", "Management", "Mechanical Engineering", "Visual Communication Design"};
+
+    public static void goToSearchMajorSet(int majorID) {
+        navView.setSelectedItemId(R.id.navigation_search);
+        fMajorspos = majorID;
+        majorSelected = fMajors[majorID];
+        fromHometoSearch = false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

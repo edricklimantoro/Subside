@@ -48,13 +48,13 @@ public class SearchFragment extends Fragment {
     String[] fMajors={"All","Accounting","Computer Science","English Education","Math Education", "Industrial Engineering",
             "Information System", "Management", "Mechanical Engineering", "Visual Communication Design"};
     String[] fCohort={"All","2019","2020","2021","2022"};
-    String majorSelected="All";
-    String cohortSelected="All";
+    //public String majorSelected="All"; MOVED TO MAIN ACTIVITY
+    public String cohortSelected="All";
 
     SwipeRefreshLayout dataRefresh;
     internetConnection connection;
-    int fMajorspos = 0;
-    int fCohortpos = 0;
+    //public int fMajorspos = 0; MOVED TO MAIN ACTIVITY
+    public int fCohortpos = 0;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -151,11 +151,11 @@ public class SearchFragment extends Fragment {
     private void majorDialog(){
         AlertDialog.Builder builder= new AlertDialog.Builder(this.getContext());
         builder.setTitle("Filter by Major");
-        builder.setSingleChoiceItems(fMajors, fMajorspos, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(fMajors, MainActivity.fMajorspos, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                majorSelected=fMajors[i];
-                fMajorspos =i;}
+                MainActivity.majorSelected=fMajors[i];
+                MainActivity.fMajorspos =i;}
         });
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -243,19 +243,19 @@ public class SearchFragment extends Fragment {
         ArrayList<UserProfile> itemFilter = new ArrayList<>();
         for (UserProfile model : list){
             if(searchText.isEmpty()) {
-                if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                    if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+                if (!MainActivity.majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                    if (model.getMajor().contains(MainActivity.majorSelected) && model.getCohort().contains(cohortSelected)) {
                         itemFilter.add(model);
                     }
-                } else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
-                    if (model.getMajor().contains(majorSelected)) {
+                } else if (!MainActivity.majorSelected.equals("All") && cohortSelected.equals("All")) {
+                    if (model.getMajor().contains(MainActivity.majorSelected)) {
                         itemFilter.add(model);
                     }
-                } else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                } else if (MainActivity.majorSelected.equals("All") && !cohortSelected.equals("All")) {
                     if (model.getCohort().contains(cohortSelected)) {
                         itemFilter.add(model);
                     }
-                } else if (majorSelected.equals("All") && cohortSelected.equals("All")) {
+                } else if (MainActivity.majorSelected.equals("All") && cohortSelected.equals("All")) {
                     itemFilter.add(model);
                 }
 
@@ -264,41 +264,41 @@ public class SearchFragment extends Fragment {
             else if(!searchText.isEmpty()){
                 String sname= model.getName().toLowerCase();
                 if(sname.contains(searchText)){
-                    if (!majorSelected.equals("All") && !cohortSelected.equals("All")) {
-                        if (model.getMajor().contains(majorSelected) && model.getCohort().contains(cohortSelected)) {
+                    if (!MainActivity.majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(MainActivity.majorSelected) && model.getCohort().contains(cohortSelected)) {
                             itemFilter.add(model);
                         }
                     }
 
-                    else if (!majorSelected.equals("All") && cohortSelected.equals("All")) {
-                        if (model.getMajor().contains(majorSelected)) {
+                    else if (!MainActivity.majorSelected.equals("All") && cohortSelected.equals("All")) {
+                        if (model.getMajor().contains(MainActivity.majorSelected)) {
                             itemFilter.add(model);
                         }
                     }
 
-                    else if (majorSelected.equals("All") && !cohortSelected.equals("All")) {
+                    else if (MainActivity.majorSelected.equals("All") && !cohortSelected.equals("All")) {
                         if (model.getCohort().contains(cohortSelected)) {
                             itemFilter.add(model);
                         }
                     }
 
-                    else if(majorSelected.equals("All") && cohortSelected.equals("All")){
+                    else if(MainActivity.majorSelected.equals("All") && cohortSelected.equals("All")){
                         itemFilter.add(model);
                     }
                 }
             }
         }
 
-        if(majorSelected.equals("All")) major_fbtn.setText("MAJOR: All");
-        else if(majorSelected.equals("Accounting")) major_fbtn.setText("MAJOR: ACT");
-        else if(majorSelected.equals("Computer Science")) major_fbtn.setText("MAJOR: CS ");
-        else if(majorSelected.equals("English Education")) major_fbtn.setText("MAJOR: Eng");
-        else if(majorSelected.equals("Math Education")) major_fbtn.setText("MAJOR: Mth");
-        else if(majorSelected.equals("Industrial Engineering")) major_fbtn.setText("MAJOR: IE ");
-        else if(majorSelected.equals("Information System")) major_fbtn.setText("MAJOR: IS ");
-        else if(majorSelected.equals("Management")) major_fbtn.setText("MAJOR: MNG");
-        else if(majorSelected.equals("Mechanical Engineering")) major_fbtn.setText("MAJOR: ME ");
-        else if(majorSelected.equals("Visual Communication Design")) major_fbtn.setText("MAJOR: VCD");
+        if(MainActivity.majorSelected.equals("All")) major_fbtn.setText("MAJOR: All");
+        else if(MainActivity.majorSelected.equals("Accounting")) major_fbtn.setText("MAJOR: ACT");
+        else if(MainActivity.majorSelected.equals("Computer Science")) major_fbtn.setText("MAJOR: CS ");
+        else if(MainActivity.majorSelected.equals("English Education")) major_fbtn.setText("MAJOR: Eng");
+        else if(MainActivity.majorSelected.equals("Math Education")) major_fbtn.setText("MAJOR: Mth");
+        else if(MainActivity.majorSelected.equals("Industrial Engineering")) major_fbtn.setText("MAJOR: IE ");
+        else if(MainActivity.majorSelected.equals("Information System")) major_fbtn.setText("MAJOR: IS ");
+        else if(MainActivity.majorSelected.equals("Management")) major_fbtn.setText("MAJOR: MNG");
+        else if(MainActivity.majorSelected.equals("Mechanical Engineering")) major_fbtn.setText("MAJOR: ME ");
+        else if(MainActivity.majorSelected.equals("Visual Communication Design")) major_fbtn.setText("MAJOR: VCD");
 
         cohort_fbtn.setText("COHORT: "+cohortSelected);
 

@@ -186,14 +186,79 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View searchbar = view.findViewById(R.id.mSearchView);
 
+        View searchbar = view.findViewById(R.id.mSearchView);
         searchbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity.setA();
             }
         });
+
+        View major1 = view.findViewById(R.id.MajorSearch);
+        major1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(2);
+            }
+        });
+
+        View major2 = view.findViewById(R.id.MajorSearch2);
+        major2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(6);
+            }
+        });
+
+        View major3 = view.findViewById(R.id.MajorSearch3);
+        major3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(8);
+            }
+        });
+
+        View major4 = view.findViewById(R.id.MajorSearch4);
+        major4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(5);
+            }
+        });
+
+        View major5 = view.findViewById(R.id.MajorSearch5);
+        major5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(9);
+            }
+        });
+
+        View major6 = view.findViewById(R.id.MajorSearch6);
+        major6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(7);
+            }
+        });
+
+        View major7 = view.findViewById(R.id.MajorSearch7);
+        major7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(1);
+            }
+        });
+
+        View major8 = view.findViewById(R.id.MajorSearch8);
+        major8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.goToSearchMajorSet(3);
+            }
+        });
+
     }
 
     @Override
