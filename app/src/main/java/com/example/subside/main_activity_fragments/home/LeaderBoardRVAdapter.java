@@ -2,6 +2,7 @@ package com.example.subside.main_activity_fragments.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
 import com.example.subside.db.DatabaseHelper;
@@ -22,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdapter.LeaderBoardViewHolder>{
 
@@ -47,6 +51,9 @@ public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdap
         UserProfile user = list.get(position);
         String setMajorFacultyCohort = user.getMajor() +" | " +user.getFaculty() +" "+user.getCohort();
 
+
+        Uri imageUri = Uri.parse(user.getProfPictUri());
+        Glide.with(context).load(user.getProfPictUri()).placeholder(R.drawable.black_profile_picture).dontAnimate().into(holder.profImage);
         holder.textRank.setText(Integer.toString(position+1));
         holder.textName.setText(user.getName());
         holder.textCount.setText(Integer.toString(user.getUnlockedProfilesCount()));
@@ -76,6 +83,7 @@ public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdap
 
     public static class LeaderBoardViewHolder extends RecyclerView.ViewHolder {
         TextView textRank;
+        CircleImageView profImage;
         TextView textName;
         TextView textCount;
         CardView leaderboardItem;
@@ -84,6 +92,7 @@ public class LeaderBoardRVAdapter extends RecyclerView.Adapter<LeaderBoardRVAdap
             super(itemView);
 
             textRank = itemView.findViewById(R.id.text_rank);
+            profImage = itemView.findViewById(R.id.leaderbrd_profImg);
             textName = itemView.findViewById(R.id.leaderbrd_name);
             textCount = itemView.findViewById(R.id.leaderbrd_count);
             leaderboardItem = itemView.findViewById(R.id.LeaderBoardItem);

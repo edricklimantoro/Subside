@@ -1,6 +1,7 @@
 package com.example.subside.main_activity_fragments.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.subside.MainActivity;
 import com.example.subside.R;
 import com.example.subside.db.DatabaseHelper;
 import com.example.subside.db.UserProfile;
+import com.example.subside.internetConnection;
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -32,6 +37,10 @@ public class HomeFragment extends Fragment {
     private LeaderBoardRVAdapter leaderBoardAdapter;
     private FeaturedRVAdapter featuredAdapter;
     private final int LDR_BRD_LENGTH = 3, FEATURED_LENGTH = 3;
+    internetConnection connection;
+    ShimmerFrameLayout leaderBoardShimmer;
+    ShimmerFrameLayout featuredShimmer;
+    SwipeRefreshLayout homeRefresh;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -47,7 +56,29 @@ public class HomeFragment extends Fragment {
         featuredRV.setHasFixedSize(true);
         featuredRV.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+        connection = new internetConnection(this.getContext());
+        leaderBoardShimmer = view.findViewById(R.id.leaderbrd_shimmer);
+        featuredShimmer = view.findViewById(R.id.featured_shimmer);
+
+        homeRefresh = view.findViewById(R.id.homeRefresh);
+
         // userProfile query
+        userProfileQuery();
+
+        homeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userProfiles.clear();
+                userProfileQuery();
+                homeRefresh.setRefreshing(false);
+            }
+        });
+
+        return view;
+    }
+
+    private void userProfileQuery(){
+        shimmerAnimation();
         DatabaseHelper.getSortedByFunFact().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -68,8 +99,48 @@ public class HomeFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
 
-        return view;
+    private void shimmerAnimation(){
+        if(userProfiles.isEmpty()||!connection.isConnectingToInternet()){
+            leaderBoardRV.setVisibility(View.GONE);
+            featuredRV.setVisibility(View.GONE);
+
+            leaderBoardShimmer.setVisibility(View.VISIBLE);
+            featuredShimmer.setVisibility(View.VISIBLE);
+
+            leaderBoardShimmer.startShimmer();
+            featuredShimmer.startShimmer();
+
+            Handler handler2 = new Handler();
+            if(connection.isConnectingToInternet()){
+                handler2.postDelayed(()->{
+                    leaderBoardShimmer.stopShimmer();
+                    leaderBoardShimmer.setVisibility(View.GONE);
+
+                    featuredShimmer.stopShimmer();
+                    featuredShimmer.setVisibility(View.GONE);
+
+                    leaderBoardRV.setVisibility(View.VISIBLE);
+                    featuredRV.setVisibility(View.VISIBLE);
+                },2000);}
+            else {
+                handler2.postDelayed(()->{
+                    if(connection.getCloseDialog()){
+                        shimmerAnimation();
+                    };
+                },10000);
+
+            }
+        }
+        else{
+            leaderBoardShimmer.stopShimmer();
+            leaderBoardShimmer.setVisibility(View.GONE);
+            leaderBoardRV.setVisibility(View.VISIBLE);
+            featuredShimmer.stopShimmer();
+            featuredShimmer.setVisibility(View.GONE);
+            featuredRV.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setLeaderBoard() {

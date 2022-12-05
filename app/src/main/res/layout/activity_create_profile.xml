@@ -27,7 +27,7 @@
                 android:textSize="30sp"
                 android:text="Set up your profile" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_createProfile"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"

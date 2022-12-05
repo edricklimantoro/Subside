@@ -37,18 +37,19 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingHorizontal="10dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="30dp"
                 android:translationZ="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/anon2" />
+                app:srcCompat="@drawable/black_profile_picture" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -275,18 +276,20 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingHorizontal="10dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/acc_profile_img"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="0dp"
                 android:translationZ="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/anon2"/>
+                android:src="@drawable/black_profile_picture"/>
 
 
             <androidx.cardview.widget.CardView

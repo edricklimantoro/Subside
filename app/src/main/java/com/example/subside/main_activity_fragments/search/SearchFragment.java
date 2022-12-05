@@ -37,6 +37,7 @@ public class SearchFragment extends Fragment {
     RecyclerView recyclerView;
     MyAdapter myAdapter;
     ShimmerFrameLayout shimmerFrameLayout;
+    boolean needshimmer;
 
     private SearchView searchView;
     Button major_fbtn;
@@ -60,33 +61,22 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        if(savedInstanceState!=null){
+            needshimmer=savedInstanceState.getBoolean("needshimmer",false);
+        }
+        else{
+            needshimmer=true;
+        }
+
         connection = new internetConnection(this.getContext());
         recyclerView = view.findViewById(R.id.recyclerview);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view);
-
-        shimmerAnimation();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), 0));
 
-        DatabaseHelper.getAll().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot users: snapshot.getChildren()){
-                    UserProfile datas = users.getValue(UserProfile.class);
-                    if (!datas.isHideAccount()) {
-                        list.add(datas);
-                    }
-                }
-                setAdapter();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        dataRefresh();
 
         searchView= view.findViewById(R.id.mSearchView);
         noData = view.findViewById(R.id.nodata_txt);
@@ -120,6 +110,7 @@ public class SearchFragment extends Fragment {
         dataRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                needshimmer=true;
                 dataRefresh();
                 dataRefresh.setRefreshing(false);
             }
@@ -178,7 +169,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void shimmerAnimation(){
-        if(list.isEmpty()){
+        if(needshimmer||!connection.isConnectingToInternet()){
             recyclerView.setVisibility(View.GONE);
             shimmerFrameLayout.setVisibility(View.VISIBLE);
             shimmerFrameLayout.startShimmer();
@@ -202,6 +193,7 @@ public class SearchFragment extends Fragment {
         }
         else{
             shimmerFrameLayout.setVisibility(View.GONE);
+            shimmerFrameLayout.stopShimmer();
             recyclerView.setVisibility(View.VISIBLE);
         }
     }
@@ -294,6 +286,20 @@ public class SearchFragment extends Fragment {
                 }
             }
         }
+
+        if(majorSelected.equals("All")) major_fbtn.setText("MAJOR: All");
+        else if(majorSelected.equals("Accounting")) major_fbtn.setText("MAJOR: ACT");
+        else if(majorSelected.equals("Computer Science")) major_fbtn.setText("MAJOR: CS ");
+        else if(majorSelected.equals("English Education")) major_fbtn.setText("MAJOR: Eng");
+        else if(majorSelected.equals("Math Education")) major_fbtn.setText("MAJOR: Mth");
+        else if(majorSelected.equals("Industrial Engineering")) major_fbtn.setText("MAJOR: IE ");
+        else if(majorSelected.equals("Information System")) major_fbtn.setText("MAJOR: IS ");
+        else if(majorSelected.equals("Management")) major_fbtn.setText("MAJOR: MNG");
+        else if(majorSelected.equals("Mechanical Engineering")) major_fbtn.setText("MAJOR: ME ");
+        else if(majorSelected.equals("Visual Communication Design")) major_fbtn.setText("MAJOR: VCD");
+
+        cohort_fbtn.setText("COHORT: "+cohortSelected);
+
         myAdapter.setFilter(itemFilter);
         if (itemFilter.isEmpty()) {
             noData.setVisibility(View.VISIBLE);
@@ -308,6 +314,7 @@ public class SearchFragment extends Fragment {
         searchView.setQuery("",false);
         searchView.clearFocus();
         searchText="";
+        outState.putBoolean("needshimmer",false);
     }
 
     @Override

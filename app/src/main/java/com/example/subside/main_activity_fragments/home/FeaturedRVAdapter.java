@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
 import com.example.subside.db.DatabaseHelper;
@@ -48,6 +49,7 @@ public class FeaturedRVAdapter extends RecyclerView.Adapter<FeaturedRVAdapter.Fe
         UserProfile user = list.get(position);
         String setMajorFacultyCohort = user.getMajor() +" | " +user.getFaculty() +" "+user.getCohort();
 
+        Glide.with(context).load(user.getProfPictUri()).placeholder(R.drawable.black_profile_picture).dontAnimate().into(holder.profileImage);
         holder.textName.setText(user.getName());
         holder.textMajor.setText(user.getMajor());
 

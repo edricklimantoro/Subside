@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.subside.db.DatabaseHelper;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -50,7 +51,7 @@ public class ProfileDisplay extends AppCompatActivity {
 
         intent = getIntent();
 
-    //    imageProfile.setImageResource(intent.getIntExtra("profile_image",0));
+        Glide.with(this).load(intent.getStringExtra("profile_image")).placeholder(R.drawable.black_profile_picture).dontAnimate().into(imageProfile);
         nameProfile.setText(intent.getStringExtra("profile_name"));
         majorProfile.setText(intent.getStringExtra("profile_major"));
         idProfile.setText(intent.getStringExtra("profile_Id"));

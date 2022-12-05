@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -16,9 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.subside.CreateProfile;
+import com.bumptech.glide.Glide;
 import com.example.subside.EditProfile;
-import com.example.subside.MainActivity;
 import com.example.subside.R;
 import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
@@ -34,20 +34,30 @@ public class AccountFragment extends Fragment {
 
     private UserProfile currentUserProfile;
     private FirebaseAuth mAuth;
+    private ImageView profImg;
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
     private Switch showSID, allowFeatured, showAccount;
     private TextView btnEditProfile, btnLogout;
     private ShimmerFrameLayout accountShimmer;
     private ScrollView accountShow;
     internetConnection connection;
+    boolean needshimmer;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+        if(savedInstanceState!=null){
+            needshimmer=savedInstanceState.getBoolean("needshimmer",false);
+        }
+        else{
+            needshimmer=true;
+        }
+
         connection = new internetConnection(this.getContext());
 
+        profImg = view.findViewById(R.id.acc_profile_img);
         name = view.findViewById(R.id.acc_name);
         major = view.findViewById(R.id.acc_major);
         faculty = view.findViewById(R.id.acc_faculty);
@@ -62,8 +72,8 @@ public class AccountFragment extends Fragment {
         showSID = view.findViewById(R.id.acc_switch_showSID);
         allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
         showAccount = view.findViewById(R.id.acc_switch_showAccount);
-        btnLogout = view.findViewById(R.id.acc_logout);
         btnEditProfile = view.findViewById(R.id.acc_edit_profile);
+        btnLogout = view.findViewById(R.id.acc_logout);
         accountShimmer = view.findViewById(R.id.accountShimmer);
         accountShow = view.findViewById(R.id.accountShow);
 
@@ -113,6 +123,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void setProfileValues() {
+        Glide.with(getContext()).load(currentUserProfile.getProfPictUri()).placeholder(R.drawable.black_profile_picture).dontAnimate().into(profImg);
         name.setText(currentUserProfile.getName().isEmpty() ? "--" : currentUserProfile.getName());
         major.setText(currentUserProfile.getMajor().isEmpty() ? "--" : currentUserProfile.getMajor() + " |");
         faculty.setText(currentUserProfile.getFaculty().isEmpty() ? "--" : currentUserProfile.getFaculty());
@@ -131,6 +142,7 @@ public class AccountFragment extends Fragment {
 
     private void shimmerAnimation() {
 
+        if(needshimmer||!connection.isConnectingToInternet()){
         accountShow.setVisibility(View.GONE);
         accountShimmer.setVisibility(View.VISIBLE);
         accountShimmer.startShimmer();
@@ -150,7 +162,19 @@ public class AccountFragment extends Fragment {
                 };
             },10000);
         }
+    }else{
+            accountShimmer.setVisibility(View.GONE);
+            accountShimmer.stopShimmer();
+            accountShow.setVisibility(View.VISIBLE);
+        }
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("needshimmer",false);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
