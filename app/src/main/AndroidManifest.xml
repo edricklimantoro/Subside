@@ -21,9 +21,12 @@
             android:name=".CreateProfile"
             android:exported="true" />
         <activity
+            android:name=".EditProfile"
+            android:exported="true" />
+        <activity
             android:name=".auth.SignIn"
             android:exported="false"
-            android:label="SignIn"/>
+            android:label="SignIn" />
         <activity
             android:name=".auth.SignUp"
             android:exported="false"

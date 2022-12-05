@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
 
                     leaderBoardRV.setVisibility(View.VISIBLE);
                     featuredRV.setVisibility(View.VISIBLE);
-                },2000);}
+                },1200);}
             else {
                 handler2.postDelayed(()->{
                     if(connection.getCloseDialog()){

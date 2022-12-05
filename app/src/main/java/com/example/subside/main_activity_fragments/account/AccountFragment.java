@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.subside.EditProfile;
+import com.example.subside.ProfileDisplay;
 import com.example.subside.R;
 import com.example.subside.auth.SignIn;
 import com.example.subside.db.DatabaseHelper;
@@ -30,13 +32,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 public class AccountFragment extends Fragment {
 
     private UserProfile currentUserProfile;
     private FirebaseAuth mAuth;
     private ImageView profImg;
     private TextView name, major, faculty, cohort, sid, instagram, email, phoneNum, linkedIn, funFact, unlockedCount;
-    private Switch showSID, allowFeatured, showAccount;
+    private Switch hideSID, disableFeatured, hideAccount;
     private TextView btnEditProfile, btnLogout;
     private ShimmerFrameLayout accountShimmer;
     private ScrollView accountShow;
@@ -69,9 +75,9 @@ public class AccountFragment extends Fragment {
         linkedIn = view.findViewById(R.id.acc_linkedIn);
         funFact = view.findViewById(R.id.acc_funFact);
         unlockedCount = view.findViewById(R.id.acc_unlock_count);
-        showSID = view.findViewById(R.id.acc_switch_showSID);
-        allowFeatured = view.findViewById(R.id.acc_switch_allowFeatured);
-        showAccount = view.findViewById(R.id.acc_switch_showAccount);
+        hideSID = view.findViewById(R.id.acc_switch_hideSID);
+        disableFeatured = view.findViewById(R.id.acc_switch_disableFeatured);
+        hideAccount = view.findViewById(R.id.acc_switch_hideAccount);
         btnEditProfile = view.findViewById(R.id.acc_edit_profile);
         btnLogout = view.findViewById(R.id.acc_logout);
         accountShimmer = view.findViewById(R.id.accountShimmer);
@@ -83,6 +89,9 @@ public class AccountFragment extends Fragment {
         DatabaseHelper.getOne(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
                 currentUserProfile = snapshot.getValue(UserProfile.class);
                 setProfileValues();
             }
@@ -93,10 +102,24 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        addSwitchListeners();
+
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EditProfile.class);
-                startActivity(intent);
+                Intent editIntent = new Intent(getContext(), EditProfile.class);
+                editIntent.putExtra("profile_uid",currentUserProfile.getUid());
+                editIntent.putExtra("profile_image",currentUserProfile.getProfPictUri());
+                editIntent.putExtra("profile_name",currentUserProfile.getName());
+                editIntent.putExtra("profile_major",currentUserProfile.getMajor());
+                editIntent.putExtra("profile_faculty",currentUserProfile.getFaculty());
+                editIntent.putExtra("profile_cohort",currentUserProfile.getCohort());
+                editIntent.putExtra("profile_Id",(currentUserProfile.getSid()));
+                editIntent.putExtra("profile_Ig",currentUserProfile.getInstagram());
+                editIntent.putExtra("profile_email",currentUserProfile.getEmail());
+                editIntent.putExtra("profile_phone",currentUserProfile.getPhoneNum());
+                editIntent.putExtra("profile_linkedin",currentUserProfile.getLinkedIn());
+                editIntent.putExtra("profile_funFact",currentUserProfile.getFunFact());
+                getContext().startActivity(editIntent);
             }
         });
 
@@ -122,6 +145,24 @@ public class AccountFragment extends Fragment {
         return view;
     }
 
+    private void addSwitchListeners() {
+        List<Switch> switchList = Arrays.asList(new Switch[] {hideSID, disableFeatured, hideAccount});
+        for (Switch s : switchList) {
+            s.setOnClickListener((v) -> {
+                HashMap<String, Object> switchUpdate = new HashMap<>();
+                switchUpdate.put(s.getText().toString(), s.isChecked());
+                DatabaseHelper.update(mAuth.getCurrentUser().getUid(), switchUpdate).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Update successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            });
+        }
+    }
+
     private void setProfileValues() {
         Glide.with(getContext()).load(currentUserProfile.getProfPictUri()).placeholder(R.drawable.black_profile_picture).dontAnimate().into(profImg);
         name.setText(currentUserProfile.getName().isEmpty() ? "--" : currentUserProfile.getName());
@@ -135,9 +176,9 @@ public class AccountFragment extends Fragment {
         linkedIn.setText(currentUserProfile.getLinkedIn().isEmpty() ? "--" : currentUserProfile.getLinkedIn());
         funFact.setText(currentUserProfile.getFunFact().isEmpty() ? "--" : currentUserProfile.getFunFact());
         unlockedCount.setText(Integer.toString(currentUserProfile.getUnlockedProfilesCount()));
-        showSID.setChecked(!currentUserProfile.isHideSID());
-        allowFeatured.setChecked(!currentUserProfile.isDisableFeatured());
-        showAccount.setChecked(!currentUserProfile.isHideAccount());
+        hideSID.setChecked(currentUserProfile.isHideSID());
+        disableFeatured.setChecked(currentUserProfile.isDisableFeatured());
+        hideAccount.setChecked(currentUserProfile.isHideAccount());
     }
 
     private void shimmerAnimation() {
@@ -153,7 +194,7 @@ public class AccountFragment extends Fragment {
                 accountShimmer.stopShimmer();
                 accountShimmer.setVisibility(View.GONE);
                 accountShow.setVisibility(View.VISIBLE);
-            }, 2000);
+            }, 1200);
         }
         else {
             handler2.postDelayed(()->{

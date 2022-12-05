@@ -127,7 +127,9 @@ public class SearchFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot users: snapshot.getChildren()){
                     UserProfile datas = users.getValue(UserProfile.class);
-                    list.add(datas);
+                    if (!datas.isHideAccount()) {
+                        list.add(datas);
+                    }
                 }
                 setAdapter();
                 searchUser();
@@ -180,7 +182,7 @@ public class SearchFragment extends Fragment {
                     shimmerFrameLayout.stopShimmer();
                     shimmerFrameLayout.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
-                },2000);}
+                },1200);}
             else {
                 handler2.postDelayed(()->{
                     if(connection.getCloseDialog()){
